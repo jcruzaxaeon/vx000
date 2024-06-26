@@ -25,7 +25,8 @@ const sequelize = new Sequelize(
     },
 );
 
-
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
 // Test DB Connection
 sequelize.authenticate()
@@ -71,15 +72,15 @@ sequelize.sync()
         console.log('Database & tables created!');
 
         // Create a new user
-        return User.create({
-            username: 'aaa',
-            password: 'aaa',
-            name: 'aaa'
-        });
+        // return User.create({
+        //     username: 'aaa',
+        //     password: 'aaa',
+        //     name: 'aaa'
+        // });
     })
-    .then(user => {
-        console.log('User created:', user.toJSON());
-    })
+    // .then(user => {
+    //     console.log('User created:', user.toJSON());
+    // })
     .catch(err => {
         console.error('Error creating user\n\n', err);
     });
@@ -88,6 +89,36 @@ sequelize.sync()
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
+});
+
+app.get('/api/users', async (req, res) => {
+    try {
+        const userList = await User.findAll();
+        res.json(userList);
+    }
+    catch {
+        console.log("Error");
+    }
+});
+
+
+
+// Create a new user - 201
+// - api/users
+app.post('/api/users', async (req, res) => {
+    const { username, password, name } = req.body;
+    
+    try {
+        const newUser = await User.create({
+            username,
+            password,
+            name
+        });
+        res.status(201).json(newUser);
+    } catch (err) {
+        console.error('Error creating user\n\n', err);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 app.listen(port, () => {
