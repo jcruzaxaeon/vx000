@@ -17,3 +17,4 @@
 
 ### `6/26/2026`
 - `restructure monorepo for backend and frontend`
+- `initialize frontend with vite`

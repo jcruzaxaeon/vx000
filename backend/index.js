@@ -4,7 +4,9 @@
 
 import envConfig from './config/env.js';
 import express from 'express';
+import cors from 'cors';
 import { Sequelize, DataTypes } from 'sequelize';
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,7 +28,9 @@ const sequelize = new Sequelize(
 );
 
 // Middleware to parse JSON request bodies
+app.use(cors());
 app.use(express.json());
+
 
 // Test DB Connection
 sequelize.authenticate()
