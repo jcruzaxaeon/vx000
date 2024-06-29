@@ -22,3 +22,10 @@
 
 ### 6/27/2026
 - `create initial routes`
+
+### 6/28/2024
+- `refactor to dedicate files for: (a) models and (b) db config`
+- `use init vs define for Models`
+
+### 6/29/2024
+- `add Target table, model`
