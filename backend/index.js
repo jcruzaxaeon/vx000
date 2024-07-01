@@ -169,6 +169,18 @@ app.post('/api/targets', async (req, res) => {
 
 
 
+// Delete target - ?204?
+// - api/targets/:id
+app.delete('/api/targets/delete/:id', async (req, res) => {    
+    try {
+        await Targets.findByPk(req.params.id);
+        await Targets.destroy({ where: {id: req.params.id}});
+        res.status(204).send();
+    } catch (err) {
+        console.error('Error deleting target\n\n', err);
+    }
+});
+
 app.listen(port, () => {
     console.log(`App running on http://localhost:${port}`);
 });

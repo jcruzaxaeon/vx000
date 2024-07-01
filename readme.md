@@ -19,7 +19,7 @@ Prototype fullstack project for host testing.
 - [x] `test db connection`
 - [x] `define, add model; create a user`
     - user-creation was hardcoded for testing
-- [x]`create a GET route`
+- [x] `create a GET route`
 
 ### 6/26/2026
 - [x] `restructure monorepo for backend and frontend`
@@ -38,4 +38,4 @@ Prototype fullstack project for host testing.
 
 ### 7/1/2024
 - [x] `add Target input-form`
-- [ ] `add Target delete-form`
+- [x] `add Target delete-form`
