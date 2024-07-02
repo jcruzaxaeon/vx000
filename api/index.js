@@ -2,10 +2,6 @@
 
 // ./index.js
 
-// REFACTOR-0
-// import envConfig from './config/env.js';  
-// import { Sequelize } from 'sequelize';
-
 // DATABASE
 import sequelize from './config/db.js';
 
@@ -20,25 +16,12 @@ import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 3000;
 
-// REFACTOR-0
-// const environment = process.env.NODE_ENV || 'dev';
-// const config = envConfig[environment];
-// console.log(config);
-//
-// const sequelize = new Sequelize(
-//     config.database,
-//     config.username,
-//     config.password,
-//     {
-//         host: config.host,
-//         dialect: config.dialect,
-//         port: config.port,
-//     },
-// );
+
 
 // Middleware to parse JSON request bodies
 app.use(cors());
 app.use(express.json());
+
 
 
 // Test DB Connection
@@ -51,49 +34,12 @@ sequelize.authenticate()
     });
 
 
-// REFACTOR-0
-// Define a model
-// const User = sequelize.define('User', {
-//     // Define attributes
-//     id: {
-//         type: DataTypes.INTEGER,
-//         primaryKey: true,
-//         autoIncrement: true
-//     },
-//     username: {
-//         type: DataTypes.STRING(45),
-//         allowNull: false,
-//         unique: true
-//     },
-//     password: {
-//         type: DataTypes.STRING(45),
-//         allowNull: false
-//     },
-//     name: {
-//         type: DataTypes.STRING(255),
-//         allowNull: true
-//     }
-// }, {
-//     // Other model options
-//     tableName: 'users', // Explicitly specifying the table name
-//     timestamps: false // Disabling automatic creation of `createdAt` and `updatedAt` columns
-// });
 
 // Sync the model with the database
 sequelize.sync()
     .then(() => {
         console.log('Database & tables created!');
-
-        // Create a new user
-        // return User.create({
-        //     username: 'aaa',
-        //     password: 'aaa',
-        //     name: 'aaa'
-        // });
     })
-    // .then(user => {
-    //     console.log('User created:', user.toJSON());
-    // })
     .catch(err => {
         console.error('Error creating user\n\n', err);
     });
@@ -127,6 +73,7 @@ app.get('/api/targets', async (req, res) => {
         console.log("Error");
     }
 });
+
 
 
 // Create a new user - 201

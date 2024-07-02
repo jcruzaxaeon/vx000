@@ -39,3 +39,6 @@ Prototype fullstack project for host testing.
 ### 7/1/2024
 - [x] `add Target input-form`
 - [x] `add Target delete-form`
+- [ ] `host entire project on railway.com`
+    - [ ] Rename "password" to "color" to avoid confusion
+    - [ ] 
