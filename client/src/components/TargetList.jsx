@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
+import config from '../../config.js';
 
 function TargetList() {
   const [targets, setTargets] = useState([]);
@@ -11,7 +12,9 @@ function TargetList() {
   useEffect(() => {
     // [ ] [!TODO] Change to environment variable with full (IP / URL)
     // - Only works because front and backend are both on WSL2 so same "localhost"
-    fetch('http://localhost:3000/api/targets')
+    const apiUrl = config['production'].apiUrl;
+
+    fetch(`${apiUrl}/api/targets`) // Previously hard-coded `http://localhost:3000`
       .then(response => response.json())
       .then(data => {
         console.log(data);
