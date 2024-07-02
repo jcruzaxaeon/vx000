@@ -14,7 +14,7 @@ function TargetList() {
     // - Only works because front and backend are both on WSL2 so same "localhost"
     const apiUrl = config['production'].apiUrl;
 
-    fetch(`${apiUrl}/api/targets`) // Previously hard-coded `http://localhost:3000`
+    fetch(`vx000-production.up.railway.app/api/targets`) // Previously hard-coded `http://localhost:3000` / `${apiUrl}/api/targets`
       .then(response => response.json())
       .then(data => {
         console.log(data);
