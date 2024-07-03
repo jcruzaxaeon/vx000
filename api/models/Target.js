@@ -1,6 +1,6 @@
 
 
-// ./models/Targets.js
+// ./models/Target.js
 
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/db.js'; // !!! Adjust the path if necessary

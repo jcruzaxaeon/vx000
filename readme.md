@@ -1,27 +1,51 @@
 
 
+
+
+
 # VX000
 - Tier-list maker
 - Prototype fullstack project for free-tier host-testing
 - `URL`: https://determined-tranquility-production.up.railway.app/
 
 
+
+
+
+## Action Roster
+
+### Up Next
+- [ ] add rating table to database
+
+### Action Inventory
+- [ ] add users to app
+- [ ] add data download option
+- [ ] create backup procedure
+- [ ] add a "default" page-not-found route
+- [ ] add a catch-all error catcher
+
+
+
+
 ## Notice
 - Using monorepo for simplicity
+
+
+
+
 
 ## Feature Wish List
 - UI/UX input for describing relationships to parents, children, siblings using arrows a la (Miro / PowerPoint)
 
-## Action Roster
-- [ ] add rating table to database
-- [ ] reorganize routes
-- [ ] add users to app
-- [ ] create backup procedure
+
+
+
 
 ## Devlog
 
 ### 7/3/2024
-- [ ] move routes into separate module
+- [ ] move routes to own module
+- [ ] refactor model names to singular per convention
 
 ### 7/2/2024
 - [x] test client on railway
