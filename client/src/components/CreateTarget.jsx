@@ -3,6 +3,7 @@
 // ./src/components/CreateTarget.jsx
 
 import { useState, useRef } from 'react';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function CreateTarget() {
 
@@ -21,7 +22,7 @@ function CreateTarget() {
             }
 
             const endpoint = `api/targets`;
-            const url = `http://localhost:3000/${endpoint}`;
+            const url = `${apiUrl}/${endpoint}`;
             const options = {
                 method: 'POST',
                 body: JSON.stringify(target),

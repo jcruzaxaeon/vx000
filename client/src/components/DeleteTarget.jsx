@@ -3,6 +3,7 @@
 // ./src/components/DeleteTarget.jsx
 
 import { useRef } from 'react';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function DeleteTarget() {
 
@@ -13,7 +14,7 @@ function DeleteTarget() {
             const rTargetId = targetId.current.value;
 
             const endpoint = `api/targets/delete/${rTargetId}`;
-            const url = `http://localhost:3000/${endpoint}`;
+            const url = `${apiUrl}/${endpoint}`;
             const options = {
                 method: 'DELETE',
                 headers: {

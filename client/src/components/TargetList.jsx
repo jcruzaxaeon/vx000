@@ -4,8 +4,7 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
-// import config from '../../config.js';
-const apiUrl = import.meta.env.VITE_API_URL; // config['production'].apiUrl;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 function TargetList() {
