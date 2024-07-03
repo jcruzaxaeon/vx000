@@ -27,7 +27,7 @@ function TargetList() {
       <h2>Target List</h2>
       <ul>
         {targets.map(target => (
-          <li key={target.id}>{target.name} ({target.categories}) {target.owner_user_key}</li>
+          <li key={target.id}>ID{target.id}: {target.name} ({target.categories}) {target.owner_user_key}</li>
         ))}
       </ul>
     </div>
