@@ -4,7 +4,9 @@
 
 import React from 'react';
 import { useEffect, useState } from 'react';
-import config from '../../config.js';
+// import config from '../../config.js';
+const apiUrl = import.meta.env.VITE_API_URL; // config['production'].apiUrl;
+
 
 function TargetList() {
   const [targets, setTargets] = useState([]);
@@ -12,9 +14,7 @@ function TargetList() {
   useEffect(() => {
     // [ ] [!TODO] Change to environment variable with full (IP / URL)
     // - Only works because front and backend are both on WSL2 so same "localhost"
-    const apiUrl = config['production'].apiUrl;
-
-    fetch(`https://vx000-production.up.railway.app/api/targets`) // Previously hard-coded `http://localhost:3000` / `${apiUrl}/api/targets`
+    fetch(`${apiUrl}/api/targets`) // Previously hard-coded `http://localhost:3000` / `${apiUrl}/api/targets` / https://vx000-production.up.railway.app
       .then(response => response.json())
       .then(data => {
         console.log(data);
