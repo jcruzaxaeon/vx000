@@ -15,16 +15,15 @@
 ## Action Roster
 
 ### Up Next
-- [ ] add rating table to database
+- [ ] add users to app
 
 ### Action Inventory
-- [ ] add users to app
 - [ ] add data download option
 - [ ] create backup procedure
 - [ ] add a "default" page-not-found route
 - [ ] add a catch-all error catcher
-
-
+- [ ] change `target` to `node`
+- [ ] display user's temporary alias for the tyr-card as card-title using some style to indicate that it is the temporary title, not verified/normalised against node-list
 
 
 ## Notice
@@ -37,15 +36,20 @@
 ## Feature Wish List
 - UI/UX input for describing relationships to parents, children, siblings using arrows a la (Miro / PowerPoint)
 
-
+### Grades
+- [ ] add a status column to grade table for tracking (recent, featured)
 
 
 
 ## Devlog
 
+### 7/7/2024
+- [x] add user creation with basic-auth
+
 ### 7/3/2024
-- [ ] move routes to own module
-- [ ] refactor model names to singular per convention
+- [x] add rating table to database
+- [x] move routes to own module
+- [x] refactor model names to singular per convention
 
 ### 7/2/2024
 - [x] test client on railway

@@ -1,6 +1,6 @@
 
 
-// ./src/components/CreateTarget.jsx
+// .client/src/components/CreateTarget.jsx
 
 import { useState, useRef } from 'react';
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -84,3 +84,4 @@ function CreateTarget() {
 }
 
 export default CreateTarget;
+

@@ -5,7 +5,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/db.js'; // !!! Adjust the path if necessary
 
-class User extends Model {}
+class User extends Model {};
 
 User.init({
     id: {
@@ -13,14 +13,19 @@ User.init({
         primaryKey: true,
         autoIncrement: true
     },
-    username: {
-        type: DataTypes.STRING(45),
+    email: {
+        type: DataTypes.STRING(255),
         allowNull: false,
-        unique: true
+        unique: true,
     },
     password: {
         type: DataTypes.STRING(45),
         allowNull: false
+    },
+    username: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        unique: true
     },
     name: {
         type: DataTypes.STRING(255),
