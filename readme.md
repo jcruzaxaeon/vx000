@@ -44,6 +44,7 @@
 ## Devlog
 
 ### 7/7/2024
+- [ ] use jwt for authorization
 - [x] add user creation with basic-auth
 
 ### 7/3/2024

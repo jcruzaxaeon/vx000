@@ -4,7 +4,8 @@
 
 import express from 'express';
 import User from '../models/User.js';
-import auth from '../middleware/authenticate.js';
+import bcrypt from 'bcrypt';
+import { authenticateUser, generateToken } from '../middleware/authentication.js';
 
 class Report extends Error {
     constructor(message, errs) {
@@ -19,10 +20,11 @@ const router = express.Router();
 router.use(express.json());
 
 
+
 // ### GET, 200 - OK
 // - [ ] (!!!) revamp code to only return authenticated user
 // - Return authenticated user's info
-router.get('/v1/api/users', auth, async (req, res) => {
+router.get('/v1/api/users', authenticateUser, async (req, res) => {
     try {
         const userList = await User.findAll();
         res.json(userList);
@@ -38,6 +40,7 @@ router.get('/v1/api/users', auth, async (req, res) => {
 // ### POST, 201 - Created
 // - Create a new user
 router.post('/v1/api/users', async (req, res, next) => {
+    console.log('here');
     const user = req.body;
     const { email, password, name, username } = user;
 
@@ -54,17 +57,45 @@ router.post('/v1/api/users', async (req, res, next) => {
             throw report;
         }
 
+        const hashedPass = await bcrypt.hash(password, 10);
         const newUser = await User.create({
             email,
-            password,
+            password: hashedPass,
             name,
             username,
         });
-        res.status(201).json(newUser);
+        const token = generateToken(newUser);
+        res.status(201).json({ message: 'User created successfully', token });
+        // res.status(201).json(newUser);
     } catch (err) {
-        console.error('\nError creating user\n\n', err);
-        next(err);
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+        // console.error('\nError creating user\n\n', err);
+        // next(err);
         // res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+// ### POST, 201 - Login
+// - User login
+router.post('/v1/api/login', async (req, res, next) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ where: {email} });
+        if (!user) return res.status(401).json({ message: 'Access Denied' });
+
+        const isAuthenticated = await bcrypt.compare(password, user.password);
+        if (!isAuthenticated) return res.status(401).json({ message: 'Invalid credentials' });
+
+        const token = generateToken(user);
+        res.json({ token });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
 });
 
