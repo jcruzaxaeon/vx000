@@ -22,7 +22,7 @@ function CreateGrade() {
 
         try {
             const newGrade = {
-                node,
+                node_alias: node,
                 grade,
                 categories,
                 comment,

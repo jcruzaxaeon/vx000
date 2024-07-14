@@ -30,12 +30,12 @@ app.use(express.json());
 // ROUTES
 //
 import userRoutes from './routes/user-routes.js';
-import targetRoutes from './routes/target-routes.js';
-import gradeRoutes from './routes/grade-routes.js';
+import nodeRoutes from './routes/node-routes.js';
+import reviewRoutes from './routes/review-routes.js';
 //
 app.use(userRoutes);
-app.use(targetRoutes);
-app.use(gradeRoutes);
+app.use(nodeRoutes);
+app.use(reviewRoutes);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });

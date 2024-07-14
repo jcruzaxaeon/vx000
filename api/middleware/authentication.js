@@ -37,8 +37,11 @@ export async function authenticateUser(req, res, next) {
     if (bearer !== 'Bearer' || !token) { return res.status(401).json('Invalid authorization header'); }
 
     try {
+        console.log("Token:", token);
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("Decoded:", decoded);
         const user = await User.findByPk(decoded.userId);
+        console.log("User:", user);
 
         if (!user) { return res.status(401).json({message: 'User not found'}); }
 
@@ -71,8 +74,8 @@ export async function authenticateUser(req, res, next) {
 
 export function generateToken(user) {
     return jwt.sign(
-        {userId: user.id},
-        process.env.JWT_SECRET,
+        {userId: user.user_id},
+        process.env.JWT_SECRET, // !!!
         {expiresIn: process.env.JWT_EXPIRATION },
     );
 }

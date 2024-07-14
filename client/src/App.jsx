@@ -7,6 +7,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import UserList from './components/UserList';
 import TargetList from './components/TargetList';
 import { useState } from 'react';
+import Landing from './components/Landing';
 import Header from './components/Header';
 import CreateTarget from './components/CreateTarget';
 import DeleteTarget from './components/DeleteTarget';
@@ -35,7 +36,8 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path='/' element={<h1>Landing</h1>} />
+        {/* <Route path='/' element={<h1>Landing</h1>} /> */}
+        <Route path="/" element={<Landing />} />
         <Route path='/api/users' element={<UserList />} />
         <Route path='/api/targets' element={<TargetList />} />
         <Route path='/api/targets/create' element={<CreateTarget />} />

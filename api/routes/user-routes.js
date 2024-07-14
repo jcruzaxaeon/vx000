@@ -85,6 +85,7 @@ router.post('/v1/api/login', async (req, res, next) => {
 
     try {
         const user = await User.findOne({ where: {email} });
+        console.log("User where: {email}", user);
         if (!user) return res.status(401).json({ message: 'Access Denied' });
 
         const isAuthenticated = await bcrypt.compare(password, user.password);

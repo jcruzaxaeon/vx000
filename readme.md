@@ -15,7 +15,7 @@
 ## Action Roster
 
 ### Up Next
-- [ ] add users to app
+- [ ] change grades to reviews, targets to nodes
 
 ### Action Inventory
 - [ ] add data download option
@@ -28,6 +28,7 @@
 
 ## Notice
 - Using monorepo for simplicity
+> [!!!] Double-check that `_id` and `_fk` table-comlumns in DB are `unsigned` (UN)
 
 
 
@@ -41,10 +42,24 @@
 
 
 
+### Testing
+- `users`
+    - [ ] Create > Login
+    - [ ] Login
+    - [ ] Read
+    - [ ] Update
+    - [ ] Recover
+    - [ ] Delete
+
+
+
 ## Devlog
 
+### 7/13/2024
+- [ ] update mysql naming
+
 ### 7/7/2024
-- [ ] use jwt for authorization
+- [X] use jwt for authorization
 - [x] add user creation with basic-auth
 
 ### 7/3/2024

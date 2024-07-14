@@ -1,6 +1,6 @@
 
 
-// ./models/User.js
+// ./api/models/User.js
 
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/db.js'; // !!! Adjust the path if necessary
@@ -8,18 +8,20 @@ import sequelize from '../config/db.js'; // !!! Adjust the path if necessary
 class User extends Model {};
 
 User.init({
-    id: {
+    user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: false,
+        unique: true
     },
     email: {
         type: DataTypes.STRING(255),
         allowNull: false,
-        unique: true,
+        unique: true
     },
     password: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.STRING(255),
         allowNull: false
     },
     username: {
@@ -29,17 +31,70 @@ User.init({
     },
     name: {
         type: DataTypes.STRING(255),
-        allowNull: true
+        allowNull: true,
+        defaultValue: null
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 }, {
     sequelize,
     modelName: 'User',  // Sequelize's model-name
     tableName: 'users', // Explicitly specifying the DB table name
-    // timestamps: true // Enable automatic creation of `createdAt` and `updatedAt` columns
+    timestamps: true // Enable automatic handling of `createdAt` and `updatedAt` columns
 });
 
 export default User;
 
+// VERSION 1
+//
+// import { Model, DataTypes } from 'sequelize';
+// import sequelize from '../config/db.js'; // !!! Adjust the path if necessary
+
+// class User extends Model {};
+
+// User.init({
+//     user_id: {
+//         type: DataTypes.INTEGER,
+//         primaryKey: true,
+//         autoIncrement: true
+//     },
+//     email: {
+//         type: DataTypes.STRING(255),
+//         allowNull: false,
+//         unique: true,
+//     },
+//     password: {
+//         type: DataTypes.STRING(45),
+//         allowNull: false
+//     },
+//     username: {
+//         type: DataTypes.STRING(45),
+//         allowNull: false,
+//         unique: true
+//     },
+//     name: {
+//         type: DataTypes.STRING(255),
+//         allowNull: true
+//     }
+// }, {
+//     sequelize,
+//     modelName: 'User',  // Sequelize's model-name
+//     tableName: 'users', // Explicitly specifying the DB table name
+//     // timestamps: true // Enable automatic creation of `createdAt` and `updatedAt` columns
+// });
+
+// export default User;
+
+// VERSION 0
+//
 // Define a model
 // const User = sequelize.define('User', {
 //     // Define attributes
