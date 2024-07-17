@@ -4,36 +4,37 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-// const Card = ({ name, rating, description, image }) => {
 const Card = ({ alias, score, categories, tags, brief, comment }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const cardRef = useRef(null);
 
-    const handleMouseDown = (e) => {
+    const handleStart = (e) => {
         setIsDragging(true);
-        setStartX(e.pageX - cardRef.current.offsetLeft);
+        setStartX(e.type.includes('mouse') ? e.pageX : e.touches[0].pageX);
     };
 
-    const handleMouseMove = (e) => {
+    const handleMove = (e) => {
         if (!isDragging) return;
-        const x = e.pageX - cardRef.current.offsetLeft;
-        const walk = (x - startX) / 3; // Adjust sensitivity
+        const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        const walk = (currentX - startX) / 3; // Adjust sensitivity
         if (Math.abs(walk) > 20) { // Threshold to trigger flip
             setIsFlipped(!isFlipped);
             setIsDragging(false);
         }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
         setIsDragging(false);
     };
 
     useEffect(() => {
-        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('mouseup', handleEnd);
+        document.addEventListener('touchend', handleEnd);
         return () => {
-            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('mouseup', handleEnd);
+            document.removeEventListener('touchend', handleEnd);
         };
     }, []);
 
@@ -44,12 +45,13 @@ const Card = ({ alias, score, categories, tags, brief, comment }) => {
                 ...styles.card,
                 transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
             }}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
+            onMouseDown={handleStart}
+            onMouseMove={handleMove}
+            onTouchStart={handleStart}
+            onTouchMove={handleMove}
         >
             <div style={styles.cardInner}>
                 <div style={styles.cardFront}>
-                    {/* <img src={image} alt={name} style={styles.image} /> */}
                     <h3 style={styles.alias}>{alias}</h3>
                     <div style={styles.rating}>Score: {score}</div>
                     <p>Categories: {categories}</p>
@@ -58,7 +60,7 @@ const Card = ({ alias, score, categories, tags, brief, comment }) => {
                 </div>
                 <div style={styles.cardBack}>
                     <h3 style={styles.alias}>{alias}</h3>
-                    <p style={styles.description}>{comment}</p>
+                    <p style={styles.comment}>{comment}</p>
                 </div>
             </div>
         </div>
@@ -128,7 +130,7 @@ const styles = {
         fontWeight: 'bold',
         color: '#007bff',
     },
-    description: {
+    comment: {
         fontSize: '0.9em',
         overflow: 'auto',
         maxHeight: '80%',
