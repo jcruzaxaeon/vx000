@@ -7,6 +7,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import UserList from './components/UserList';
 import NodeList from './components/NodeList';
 import { useState } from 'react';
+import IconNavHeader from './components/IconNavHeader';
 import Landing from './components/Landing';
 import Header from './components/Header';
 import CreateNode from './components/CreateNode';
@@ -23,7 +24,8 @@ function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <IconNavHeader />
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>

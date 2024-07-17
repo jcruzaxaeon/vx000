@@ -1,0 +1,43 @@
+
+
+/* ./client/src/styles/IconNavHeader.css */
+
+.icon-nav-header {
+    background-color: #333;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+  
+  .icon-nav-header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .icon-nav-header li {
+    margin: 0 15px;
+  }
+  
+  .icon-nav-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+  }
+  
+  .icon-nav-header a:hover {
+    color: #00a8ff;
+  }
+  
+  /* Add responsive design for smaller screens */
+  @media (max-width: 600px) {
+    .icon-nav-header ul {
+      flex-wrap: wrap;
+    }
+    
+    .icon-nav-header li {
+      margin: 5px;
+    }
+  }
