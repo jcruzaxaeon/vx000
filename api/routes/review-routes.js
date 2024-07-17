@@ -42,7 +42,7 @@ router.get('/v1/api/reviews/:id', async (req, res) => {
 // ### POST a new review - 201 Created
 // - Update endpoint to `/v1/api/reviews`
 router.post('/v1/api/reviews', async (req, res) => {
-  const { alias, score, categories, tags, comment, user_fk, node_fk } = req.body;
+  const { alias, score, categories, tags, brief, comment, user_fk, node_fk, rubric_fk } = req.body;
 
   try {
     const newReview = await Review.create({
@@ -50,9 +50,11 @@ router.post('/v1/api/reviews', async (req, res) => {
       score,
       categories,
       tags,
+      brief,
       comment,
       user_fk,
       node_fk,
+      rubric_fk,
     });
     res.status(201).json(newReview);
   } catch (err) {

@@ -59,11 +59,11 @@ Node.init({
       key: 'user_id'
     }
   },
-  isEmailVerified: {
-    type: DataTypes.TINYINT,
-    allowNull: false,
-    defaultValue: 0
-  },
+  // isEmailVerified: {
+  //   type: DataTypes.TINYINT,
+  //   allowNull: false,
+  //   defaultValue: 0
+  // },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,

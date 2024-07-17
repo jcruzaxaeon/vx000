@@ -1,19 +1,19 @@
 
 
-// ./src/components/DeleteTarget.jsx
+// ./src/components/DeleteNode.jsx
 
 import { useRef } from 'react';
 const apiUrl = import.meta.env.VITE_API_URL;
 
-function DeleteTarget() {
+function DeleteNode() {
 
-    const targetId = useRef(0);
+    const nodeId = useRef(0);
 
     async function handleDelete() {
         try {
-            const rTargetId = targetId.current.value;
+            const rNodeId = nodeId.current.value;
 
-            const endpoint = `api/targets/delete/${rTargetId}`;
+            const endpoint = `api/nodes/delete/${rNodeId}`;
             const url = `${apiUrl}/${endpoint}`;
             const options = {
                 method: 'DELETE',
@@ -33,15 +33,15 @@ function DeleteTarget() {
 
     return (<>
             <div>
-                <label htmlFor="targetId">Target Id:</label>
+                <label htmlFor="nodeId">Node Id:</label>
                 <input
-                    ref={targetId}
-                    id="targetId"
-                    name="targetId"
+                    ref={nodeId}
+                    id="nodeId"
+                    name="nodeId"
                     type="text"
                     defaultValue='0'
-                    // value={targetId}
-                    // onChange={(e) => setName(e.target.value)}
+                    // value={nodeId}
+                    // onChange={(e) => setName(e.node.value)}
                     required
                 />
             </div>
@@ -49,4 +49,4 @@ function DeleteTarget() {
     </>);
 }
 
-export default DeleteTarget;
+export default DeleteNode;

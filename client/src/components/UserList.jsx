@@ -46,7 +46,7 @@ function UserList() {
       <h2>User List</h2>
       <ul>
         {users.map(user => (
-          <li key={user.id}>{user.name} ({user.username})</li>
+          <li key={user.user_id}>{user.name} ({user.username})</li>
         ))}
       </ul>
     </div>

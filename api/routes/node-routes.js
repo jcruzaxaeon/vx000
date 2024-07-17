@@ -14,6 +14,7 @@ const router = express.Router();
 router.get('/api/nodes', async (req, res) => {
     try {
         const nodeList = await Node.findAll();
+        console.log("Node List:", nodeList);
         res.json(nodeList);
     }
     catch {
@@ -26,14 +27,15 @@ router.get('/api/nodes', async (req, res) => {
 // - [ ] (!!!) update endpoint to `/v1/api/node`?
 // - api/nodes
 router.post('/api/nodes', async (req, res) => {
-    const { name, categories, userId } = req.body;
-    
+    const { name, categories, owner_fk } = req.body;
+
     try {
         const newNode = await Node.create({
             name,
             categories,
-            owner_user_key: userId,
+            owner_fk,
         });
+        // console.log("New Node:", newNode);
         res.status(201).json(newNode);
     } catch (err) {
         console.error('Error creating user\n\n', err);
@@ -44,10 +46,10 @@ router.post('/api/nodes', async (req, res) => {
 // ### DELETE ?204?
 // - [ ] (!!!) update endpoint to `/v1/api/node`?
 // - api/nodes/:id
-router.delete('/api/nodes/delete/:id', async (req, res) => {    
+router.delete('/api/nodes/delete/:id', async (req, res) => {
     try {
         await Node.findByPk(req.params.id);
-        await Node.destroy({ where: {id: req.params.id}});
+        await Node.destroy({ where: { id: req.params.id } });
         res.status(204).send();
     } catch (err) {
         console.error('Error deleting node\n\n', err);

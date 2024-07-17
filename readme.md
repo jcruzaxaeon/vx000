@@ -5,6 +5,7 @@
 
 # VX000
 - Tier-list maker
+- Specifically for all media? Human-powered reviews?
 - Prototype fullstack project for free-tier host-testing
 - `URL`: https://determined-tranquility-production.up.railway.app/
 
@@ -36,6 +37,7 @@
 
 ## Feature Wish List
 - UI/UX input for describing relationships to parents, children, siblings using arrows a la (Miro / PowerPoint)
+- Stats input for a `review` e.g. { spiciness: 4, salt: 3, size: 4 }
 
 ### Grades
 - [ ] add a status column to grade table for tracking (recent, featured)
