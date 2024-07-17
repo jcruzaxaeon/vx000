@@ -17,6 +17,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import CreateReview from './components/CreateReview';
 import ReadReviews from './components/reviews/ReadReviews';
+import ReadReview from './components/reviews/ReadReview';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/reviews' element={<ReadReviews />} />
+        <Route path='/reviews/:reviewId' element={<ReadReview />} />
         <Route path='/reviews/create' element={<CreateReview />} />
       </Routes>
     </>

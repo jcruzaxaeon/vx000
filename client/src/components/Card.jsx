@@ -4,7 +4,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-const Card = ({ name, rating, description, image }) => {
+// const Card = ({ name, rating, description, image }) => {
+const Card = ({ alias, score, categories, tags, brief, comment }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
@@ -48,13 +49,16 @@ const Card = ({ name, rating, description, image }) => {
         >
             <div style={styles.cardInner}>
                 <div style={styles.cardFront}>
-                    <img src={image} alt={name} style={styles.image} />
-                    <h3 style={styles.name}>{name}</h3>
-                    <div style={styles.rating}>Rating: {rating}/5</div>
+                    {/* <img src={image} alt={name} style={styles.image} /> */}
+                    <h3 style={styles.alias}>{alias}</h3>
+                    <div style={styles.rating}>Score: {score}</div>
+                    <p>Categories: {categories}</p>
+                    <p>Tags: {tags}</p>
+                    <p>Brief: {brief}</p>
                 </div>
                 <div style={styles.cardBack}>
-                    <h3 style={styles.name}>{name}</h3>
-                    <p style={styles.description}>{description}</p>
+                    <h3 style={styles.alias}>{alias}</h3>
+                    <p style={styles.description}>{comment}</p>
                 </div>
             </div>
         </div>
@@ -115,7 +119,7 @@ const styles = {
         borderRadius: '5px',
         marginBottom: '10px',
     },
-    name: {
+    alias: {
         margin: '0 0 10px 0',
         fontSize: '1.2em',
     },

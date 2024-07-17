@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getToken } from '../../services/auth.js';
+import { Link } from 'react-router-dom';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,9 +49,20 @@ function ReadReviews() {
                     </tr>
                 </thead>
                 <tbody>
-                    {reviews.map((review) => (
-                        <tr key={review.review_id}>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.alias}</td>
+                    {reviews.map((review, index) => (
+                        <tr key={review.review_id} style={{
+                            backgroundColor: index % 2 === 0 ? '#f2f2f2' : 'white'
+                        }}>
+                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                                <Link to={`/reviews/${review.review_id}`}
+                                    style={{
+                                        // textDecoration: 'none',
+                                        color: 'inherit',
+                                        display: 'contents'
+                                    }}>
+                                    {review.alias}
+                                </Link>
+                            </td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.score}</td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.categories}</td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.tags}</td>
@@ -61,33 +73,6 @@ function ReadReviews() {
                 </tbody>
             </table>
         </div>
-        // <div>
-        //     <h2>All Reviews</h2>
-        //     <table>
-        //         <thead>
-        //             <tr>
-        //                 <th>Alias</th>
-        //                 <th>Score</th>
-        //                 <th>Categories</th>
-        //                 <th>Tags</th>
-        //                 <th>Brief</th>
-        //                 <th>Comment</th>
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             {reviews.map((review) => (
-        //                 <tr key={review.review_id}>
-        //                     <td>{review.alias}</td>
-        //                     <td>{review.score}</td>
-        //                     <td>{review.categories}</td>
-        //                     <td>{review.tags}</td>
-        //                     <td>{review.brief}</td>
-        //                     <td>{review.comment}</td>
-        //                 </tr>
-        //             ))}
-        //         </tbody>
-        //     </table>
-        // </div>
     );
 }
 

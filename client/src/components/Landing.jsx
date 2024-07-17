@@ -30,14 +30,14 @@ const Landing = () => {
                         <h3>Rate Products</h3>
                         <p>Inform purchasing decisions with your ratings</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <Card
                             name="The Catcher in the Rye"
                             rating={4.5}
                             description="A classic novel by J.D. Salinger about teenage angst and alienation."
                             image="url_to_book_cover_image"
                         />
-                    </div>
+                    </div> */}
                 </div>
             </main>
         </div>
