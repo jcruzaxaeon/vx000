@@ -3,22 +3,23 @@
 // ./client/src/App.jsx
 
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import UserList from './components/UserList';
-import NodeList from './components/NodeList';
-import { useState } from 'react';
+import { /*Routes, Route,*/ Link } from 'react-router-dom';
+// import UserList from './components/UserList';
+// import NodeList from './components/NodeList';
+// import { useState } from 'react';
 import IconNavHeader from './components/IconNavHeader';
-import Landing from './components/Landing';
-import Header from './components/Header';
-import CreateNode from './components/CreateNode';
-import DeleteNode from './components/DeleteNode';
-import CreateGrade from './components/CreateGrade';
-import GradeList from './components/GradeList';
-import Register from './components/Register';
-import Login from './components/Login';
-import CreateReview from './components/CreateReview';
-import ReadReviews from './components/reviews/ReadReviews';
-import ReadReview from './components/reviews/ReadReview';
+// import Landing from './components/Landing';
+// import Header from './components/Header';
+// import CreateNode from './components/CreateNode';
+// import DeleteNode from './components/DeleteNode';
+// import CreateGrade from './components/CreateGrade';
+// import GradeList from './components/GradeList';
+// import Register from './components/Register';
+// import Login from './components/Login';
+// import CreateReview from './components/CreateReview';
+// import ReadReviews from './components/reviews/ReadReviews';
+// import ReadReview from './components/reviews/ReadReview';
+import AppRoutes from './Routes';
 
 function App() {
 
@@ -26,25 +27,13 @@ function App() {
     <>
       {/* <Header /> */}
       <IconNavHeader />
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/api/users">User List</Link></li>
-          <li><Link to="/nodes">Node List</Link></li>
-          <li><Link to="/grades">Grade List</Link></li>
-          <li><Link to="/nodes/create">Create Node</Link></li>
-          <li><Link to="/api/nodes/delete">Delete Node</Link></li>
-          <li><Link to="/grade/create">Create Grade</Link></li>
-          <li><Link to="/register">Create an account</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/reviews">Read All Reviews</Link></li>
-          <li><Link to="/reviews/create">Create Review</Link></li>
-          {/* <li><Link to="/create">Create User</Link></li> */}
-        </ul>
-      </nav>
-      <Routes>
+      <main>
+        <AppRoutes />
+      </main>
+      {/* <Footer /> */}
+      {/* <Routes> */}
         {/* <Route path='/' element={<h1>Landing</h1>} /> */}
-        <Route path="/" element={<Landing />} />
+        {/* <Route path="/" element={<Landing />} />
         <Route path='/api/users' element={<UserList />} />
         <Route path='/nodes' element={<NodeList />} />
         <Route path='/nodes/create' element={<CreateNode />} />
@@ -56,7 +45,7 @@ function App() {
         <Route path='/reviews' element={<ReadReviews />} />
         <Route path='/reviews/:reviewId' element={<ReadReview />} />
         <Route path='/reviews/create' element={<CreateReview />} />
-      </Routes>
+      </Routes> */}
     </>
   )
 }

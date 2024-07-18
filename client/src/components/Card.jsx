@@ -80,6 +80,7 @@ const styles = {
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',
         msUserSelect: 'none',
+        borderRadius: '5px',
     },
     cardInner: {
         position: 'relative',

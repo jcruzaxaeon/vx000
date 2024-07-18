@@ -57,8 +57,8 @@ function ReadReviews() {
                                 <Link to={`/reviews/${review.review_id}`}
                                     style={{
                                         // textDecoration: 'none',
-                                        color: 'inherit',
-                                        display: 'contents'
+                                        // color: 'inherit',
+                                        // display: 'contents'
                                     }}>
                                     {review.alias}
                                 </Link>

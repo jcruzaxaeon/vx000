@@ -36,23 +36,21 @@ const Header = () => {
     <header style={styles.header}>
       <h1 style={styles.title}>TYRLYST</h1>
       <ul style={styles.nav}>
-        {isValidToken ? (
-          <>
-            <li style={styles.navItem}>{userEmail}</li>
-            <li style={styles.navItem}>
-              <button onClick={handleSignOut} style={styles.button}>Sign Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li style={styles.navItem}>
-              <Link to="/register" style={styles.link}>Register</Link>
-            </li>
-            <li style={styles.navItem}>
-              <Link to="/login" style={styles.link}>Login</Link>
-            </li>
-          </>
-        )}
+        {isValidToken
+          ? (
+            <><li style={styles.navItem}>{userEmail}</li>
+              <li style={styles.navItem}>
+                <button onClick={handleSignOut} style={styles.button}>Sign Out</button>
+              </li></>)
+          : (<>
+              <li style={styles.navItem}>
+                <Link to="/register" style={styles.link}>Register</Link>
+              </li>
+              <li style={styles.navItem}>
+                <Link to="/login" style={styles.link}>Login</Link>
+              </li>
+            </>
+          )}
       </ul>
     </header>
   );

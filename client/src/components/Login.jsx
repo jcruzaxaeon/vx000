@@ -3,8 +3,9 @@
 // ./client/src/components/Login.jsx
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/auth.js';
+import '../styles/Login.css';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -22,11 +23,7 @@ const Login = () => {
 
     try {
       const response = await login(credentials);
-      // The token is already set in the cookie by the login function
-      // You might want to do something with the response, like storing user info
       console.log('Login successful', response);
-      
-      // Redirect to a protected route or dashboard
       navigate('/api/users');
     } catch (err) {
       setError(err.message || 'Login failed');
@@ -34,11 +31,11 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -49,7 +46,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -60,10 +57,14 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
+      <p className="register-link">
+        Don't have an account? <Link to="/register">Create an account</Link>
+      </p>
     </div>
   );
 };
 
 export default Login;
+

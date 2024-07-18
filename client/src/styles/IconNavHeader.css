@@ -1,43 +1,104 @@
-
-
 /* ./client/src/styles/IconNavHeader.css */
 
 .icon-nav-header {
     background-color: #333;
-    padding: 10px 0;
-    border-radius: 10px;
-  }
-  
-  .icon-nav-header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    padding: 10px 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
   }
   
-  .icon-nav-header li {
-    margin: 0 15px;
+  .icon-nav-header i {
+    padding: 5px;
   }
   
-  .icon-nav-header a {
+  .icon-container {
+    display: flex;
+  }
+  
+  .icon-group {
+    display: flex;
+  }
+  
+  .icon-group a {
     color: white;
     text-decoration: none;
     font-size: 1.5em;
+    margin-right: 20px;
     transition: color 0.3s ease;
   }
   
-  .icon-nav-header a:hover {
-    color: #00a8ff;
+  .icon-group a:hover {
+    color: darkgray;
   }
   
-  /* Add responsive design for smaller screens */
-  @media (max-width: 600px) {
-    .icon-nav-header ul {
+  .icon-nav-header .login-button {
+    margin-left: auto;
+  }
+  
+  .icon-nav-header .login-link {
+    background-color: slategrey;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .icon-nav-header .login-link:hover {
+    background-color: #0077cc;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .icon-nav-header {
       flex-wrap: wrap;
     }
-    
-    .icon-nav-header li {
-      margin: 5px;
+  
+    .icon-container {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: calc(100% - 100px);
+    }
+  
+    .icon-group {
+      width: 100%;
+      justify-content: left;
+      margin-bottom: 10px;
+    }
+  
+    .icon-group a {
+      margin-right: 0;
+    }
+  
+    .icon-nav-header .login-button {
+      display: flex;
+      align-items: flex-start;
+      margin-left: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .icon-nav-header {
+      justify-content: center;
+    }
+  
+    .icon-container {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .icon-nav-header .login-button {
+      margin-left: 0;
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .icon-nav-header .login-link {
+      display: block;
+      text-align: center;
     }
   }

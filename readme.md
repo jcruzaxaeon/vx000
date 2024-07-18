@@ -17,7 +17,7 @@
 ## Action Roster
 
 ### Up Next
-- [ ] change grades to reviews, targets to nodes
+- [ ] Add username to review-card
 
 ### Action Inventory
 - [ ] add data download option
@@ -26,6 +26,9 @@
 - [ ] add a catch-all error catcher
 - [ ] change `target` to `node`
 - [ ] display user's temporary alias for the tyr-card as card-title using some style to indicate that it is the temporary title, not verified/normalised against node-list
+- [ ] save score as S, A, B, C, D, F, F- in db
+- [ ] checklist (like a playlist but for things you suggest other's try like a bucketlist?)
+- [ ] add featured to DB
 
 
 ## Notice
@@ -58,8 +61,15 @@
 
 ## Devlog
 
+### 7/17/2024
+- [x] change IconNavHeader login-button to logout-button after login
+- [x] refactor landing page with a most recent review-card
+
+### 7/??/2024*
+- [x] change grades to reviews, targets to nodes
+
 ### 7/13/2024
-- [ ] update mysql naming
+- [x] update mysql naming
 
 ### 7/7/2024
 - [X] use jwt for authorization
