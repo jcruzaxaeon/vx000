@@ -47,9 +47,9 @@ function IconNavHeader() {
                     </Link>
                 </div>
                 <div className="icon-group">
-                    <Link to="/grades" title="Grade List">
+                    {/* <Link to="/grades" title="Grade List">
                         <i className="fas fa-list-ol"></i>
-                    </Link>
+                    </Link> */}
                     <Link to="/nodes/create" title="Create Node">
                         <i className="fas fa-plus-circle"></i>
                     </Link>

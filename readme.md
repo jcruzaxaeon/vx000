@@ -17,7 +17,9 @@
 ## Action Roster
 
 ### Up Next
-- [ ] Add username to review-card
+- [ ] fix small form-factor IconNavHeader
+- [ ] add username to review-card
+- [ ] complete CRUD operations for reviews
 
 ### Action Inventory
 - [ ] add data download option
@@ -29,7 +31,8 @@
 - [ ] save score as S, A, B, C, D, F, F- in db
 - [ ] checklist (like a playlist but for things you suggest other's try like a bucketlist?)
 - [ ] add featured to DB
-
+- [ ] complete CRUD for nodes
+- [ ] add a settings page/db
 
 ## Notice
 - Using monorepo for simplicity
