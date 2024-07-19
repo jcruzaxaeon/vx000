@@ -55,7 +55,7 @@
   /* Responsive design */
   @media (max-width: 768px) {
     .icon-nav-header {
-      flex-wrap: wrap;
+      /* flex-wrap: wrap; */
     }
   
     .icon-container {
@@ -67,7 +67,7 @@
     .icon-group {
       width: 100%;
       justify-content: left;
-      margin-bottom: 10px;
+      /* margin-bottom: 10px; */
     }
   
     .icon-group a {
@@ -87,18 +87,22 @@
     }
   
     .icon-container {
-      width: 100%;
-      margin-bottom: 10px;
+      /* width: 100%; */
+      /* margin-bottom: 10px; */
     }
   
+    .icon-group {
+        /* justify-content: center; */
+    }
+
     .icon-nav-header .login-button {
-      margin-left: 0;
+      /* margin-left: 0;
       width: 100%;
-      justify-content: center;
+      justify-content: center; */
     }
   
-    .icon-nav-header .login-link {
+    /* .icon-nav-header .login-link {
       display: block;
       text-align: center;
-    }
+    } */
   }

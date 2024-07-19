@@ -17,7 +17,6 @@
 ## Action Roster
 
 ### Up Next
-- [ ] fix small form-factor IconNavHeader
 - [ ] add username to review-card
 - [ ] complete CRUD operations for reviews
 
@@ -33,6 +32,7 @@
 - [ ] add featured to DB
 - [ ] complete CRUD for nodes
 - [ ] add a settings page/db
+- [ ] add a `justification` attribute (1 paragraph justifying score)
 
 ## Notice
 - Using monorepo for simplicity
@@ -63,6 +63,9 @@
 
 
 ## Devlog
+
+### 7/18/2024
+- [x] fix small form-factor IconNavHeader
 
 ### 7/17/2024
 - [x] change IconNavHeader login-button to logout-button after login

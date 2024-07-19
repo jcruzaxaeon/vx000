@@ -1,0 +1,146 @@
+/* ./client/src/styles/Card.css */
+
+.card {
+    width: 63mm;
+    height: 88mm;
+    perspective: 1000px;
+    font-family: 'Beleren', serif;
+    cursor: pointer;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 4.75% / 3.5%;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 4.75% / 3.5%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.card-front {
+    background-color: #f8f8f8;
+}
+
+.card-back {
+    background-color: #0e68ab;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.card-frame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.frame-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8%;
+    padding: 0 5%;
+    background-color: #bbb;
+    border-radius: 5px;
+}
+
+.card-name {
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.mana-cost {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.frame-art {
+    height: 43%;
+    margin: 1% 2%;
+    border-radius: 4% / 3%;
+    overflow: hidden;
+}
+
+.art-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+}
+
+.frame-type-line {
+    height: 6%;
+    background-color: #bbb;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    font-size: 0.7em;
+    border-radius: 5px;
+}
+
+.frame-text-box {
+    height: 38%;
+    margin: 1% 2%;
+    padding: 2%;
+    font-size: 0.65em;
+    text-align: left;
+    background-color: #d6d6d6;
+    border-radius: 3% / 3%;
+    overflow: auto;
+}
+
+.flavor-text {
+    font-style: italic;
+    margin-bottom: 0.5em;
+}
+
+.frame-bottom-info {
+    height: 4%;
+    background-color: #bbb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    font-size: 0.6em;
+    border-radius: 5px;
+}
+
+.back-title {
+    color: white;
+    margin-bottom: 1em;
+}
+
+.back-content {
+    padding: 0 10%;
+    font-size: 0.8em;
+    overflow: auto;
+}

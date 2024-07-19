@@ -45,8 +45,8 @@ function IconNavHeader() {
                     <Link to="/nodes" title="Node List">
                         <i className="fas fa-project-diagram"></i>
                     </Link>
-                </div>
-                <div className="icon-group">
+                {/* </div>
+                <div className="icon-group"> */}
                     {/* <Link to="/grades" title="Grade List">
                         <i className="fas fa-list-ol"></i>
                     </Link> */}
