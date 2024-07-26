@@ -40,12 +40,9 @@ function ReadReviews() {
             <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                 <thead>
                     <tr>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Alias</th>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Score</th>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Categories</th>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Tags</th>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Brief</th>
-                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Comment</th>
+                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>List</th>
+                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Item</th>
+                        <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #ddd' }}>Tier</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +50,7 @@ function ReadReviews() {
                         <tr key={review.review_id} style={{
                             backgroundColor: index % 2 === 0 ? '#f2f2f2' : 'white'
                         }}>
+                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.disambiguation}</td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
                                 <Link to={`/reviews/${review.review_id}`}
                                     style={{
@@ -63,11 +61,7 @@ function ReadReviews() {
                                     {review.alias}
                                 </Link>
                             </td>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.score}</td>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.categories}</td>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.tags}</td>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.brief}</td>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.comment}</td>
+                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.tier}</td>
                         </tr>
                     ))}
                 </tbody>

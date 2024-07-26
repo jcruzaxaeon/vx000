@@ -13,9 +13,12 @@ import CreateGrade from './components/CreateGrade';
 import GradeList from './components/GradeList';
 import Register from './components/Register';
 import Login from './components/Login';
-import CreateReview from './components/CreateReview';
+// import CreateReview from './components/CreateReview';
 import ReadReviews from './components/reviews/ReadReviews';
 import ReadReview from './components/reviews/ReadReview';
+import CreateReviewStandard from './components/reviews/CreateReviewStandard';
+import UpdateReview from './components/reviews/UpdateReview';
+import DeleteReview from './components/reviews/DeleteReview';
 
 function AppRoutes() {
   return (
@@ -31,7 +34,9 @@ function AppRoutes() {
       <Route path='/login' element={<Login />} />
       <Route path='/reviews' element={<ReadReviews />} />
       <Route path='/reviews/:reviewId' element={<ReadReview />} />
-      <Route path='/reviews/create' element={<CreateReview />} />
+      <Route path='/reviews/create' element={<CreateReviewStandard />} />
+      <Route path='/reviews/:reviewId/edit' element={<UpdateReview />} />
+      <Route path='/reviews/:reviewId/delete' element={<DeleteReview />} />
     </Routes>
   );
 }

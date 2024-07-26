@@ -10,7 +10,11 @@ import { jwtDecode } from 'jwt-decode';
 const apiUrl = import.meta.env.VITE_API_URL;
 const defaultReview = {
     alias: 'Node Name',
+    tier: '',
+    category: '',
+    type: '',
     score: 0,
+    disambiguation: 'Perfect disambiguation',
     categories: 'Category 1, Category 2',
     tags: '#tag1, #tag2',
     brief: '',
@@ -22,8 +26,7 @@ const defaultReview = {
     // updatedAt is set @ backend
 };
 
-// const CreateReview = () => {
-function CreateReview() {
+const CreateReview = () => {
     const [reviewData, setReviewData] = useState(defaultReview);
 
     async function createNode() {
@@ -31,8 +34,11 @@ function CreateReview() {
         const userId = parseInt(jwtDecode(token).userId, 10);
 
         const node = {
-            name: reviewData.alias,
-            categories: reviewData.categories,
+            name: `${reviewData.alias} ${reviewData.disambiguation}`,
+            category: reviewData.category,
+            type: reviewData.type,
+            brief: reviewData.brief,
+            // categories: reviewData.categories,
             owner_fk: userId,
         };
 
@@ -94,6 +100,17 @@ function CreateReview() {
                         name="alias"
                         placeholder='Node Name'
                         // value={reviewData.alias}
+                        onChange={handleChange}
+                        required
+                    />
+                </li>
+                <li>
+                    <label htmlFor="disambiguation">Disambiguation:</label>
+                    <input
+                        type="text"
+                        id="disambiguation"
+                        name="disambiguation"
+                        placeholder='Perfect disambiguation'
                         onChange={handleChange}
                         required
                     />

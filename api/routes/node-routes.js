@@ -27,11 +27,13 @@ router.get('/api/nodes', async (req, res) => {
 // - [ ] (!!!) update endpoint to `/v1/api/node`?
 // - api/nodes
 router.post('/api/nodes', async (req, res) => {
-    const { name, categories, owner_fk } = req.body;
+    const { name, category, type, categories, owner_fk } = req.body;
 
     try {
         const newNode = await Node.create({
             name,
+            category,
+            type,
             categories,
             owner_fk,
         });

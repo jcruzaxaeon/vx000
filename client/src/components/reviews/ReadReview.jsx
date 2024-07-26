@@ -1,10 +1,12 @@
 
 
+// Review Details
+//
 // ./client/src/components/reviews/ReadReview.jsx
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getToken } from '../../services/auth.js';
 import Card from '../Card.jsx';  // Adjust the import path as necessary
 
@@ -41,21 +43,26 @@ function ReadReview() {
     }
 
     return (
-        <div style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center', 
-            width: '100%' 
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: '100%'
         }}>
             <h2>Review Details</h2>
             <Card
+                review_id={review.review_id}
+                review_type={review.review_type}
                 alias={review.alias}
+                disambiguation={review.disambiguation}
+                tier={review.tier}
                 score={review.score}
                 categories={review.categories}
                 tags={review.tags}
                 brief={review.brief}
                 comment={review.comment}
             />
+            <Link to={`/reviews/${reviewId}/edit`}>Update Review</Link>
         </div>
     );
 }

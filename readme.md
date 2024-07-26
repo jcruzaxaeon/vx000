@@ -12,15 +12,22 @@
 
 
 
-
+## Design Whiteboard
+- `tier`: S, A, B, C, D, E, F
+- `score`: as in z-score (e.g. -3, -2, -1, 0, 1, 2, 3)
+    - `decimal` (-3.9 - 3.9)
+    - 
 
 ## Action Roster
 
 ### Up Next
-- [ ] add username to review-card
-- [ ] complete CRUD operations for reviews
+- [ ] complete all CRUD for reviews
 
 ### Action Inventory
+- [ ] add CreateReviewBasic
+- [ ] add CreateReviewFull
+- [ ] add CreateReviewStandard
+- [ ] add letter grade conversion to save grade as z-score and "tyr"
 - [ ] add data download option
 - [ ] create backup procedure
 - [ ] add a "default" page-not-found route
@@ -33,6 +40,16 @@
 - [ ] complete CRUD for nodes
 - [ ] add a settings page/db
 - [ ] add a `justification` attribute (1 paragraph justifying score)
+- [ ] quick review
+- [ ] create a (public, private, shared) option for creating reviews
+- [ ] allow image upload
+- [ ] create an object input UI for entering justification "meta"-data as an object (key/value pairs) like an infinite cylinder? or just a up/down arrow input
+- [ ] mod review-card
+- [ ] add a randomizer for placeholder values that picks things other "similar" people have rated
+- [ ] mod CreateReview for moderate complexity
+
+#### Long Term
+- [ ] build business-card format for basic-reviews
 
 ## Notice
 - Using monorepo for simplicity
@@ -64,7 +81,14 @@
 
 ## Devlog
 
+### 7/22/2024
+- [ ] implement letter grade
+- [ ] complete CRUD operations for reviews
+    - [ ] create (functional)
+    - [ ] 
+
 ### 7/18/2024
+- [x] Start working on card design?
 - [x] fix small form-factor IconNavHeader
 
 ### 7/17/2024

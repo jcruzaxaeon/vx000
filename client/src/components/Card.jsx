@@ -1,7 +1,13 @@
+
+
+// 
+// ./client/scr/components/Card.jsx
+
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Card.css';
 
-const Card = ({ alias, score, categories, tags, brief, comment }) => {
+const Card = ({ review_id, review_type, alias, disambiguation, tier, category, type, score, categories, tags, brief, comment }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
@@ -36,39 +42,48 @@ const Card = ({ alias, score, categories, tags, brief, comment }) => {
     }, []);
 
     return (
+        <Link to={`/reviews/${review_id}/edit`}>
         <div
             ref={cardRef}
-            className={`card ${isFlipped ? 'flipped' : ''}`}
+            className={`${review_type !== 'Basic' ? 'card' : 'card__basic'} ${isFlipped ? 'flipped' : ''}`}
             onMouseDown={handleStart}
             onMouseMove={handleMove}
             onTouchStart={handleStart}
-            onTouchMove={handleMove}
-        >
+            onTouchMove={handleMove}>
             <div className="card-inner">
                 <div className="card-front">
                     <div className="card-frame">
                         <div className="frame-header">
-                            <h2 className="card-name">{alias}</h2>
-                            <div className="mana-cost">{score}</div>
+                            <div className='line-1'>
+                                <h2 className="card-name">{alias}</h2>
+                                <div className="mana-cost">{tier}</div>
+                            </div>
+                            <div className='line-2'>
+                                <p>{disambiguation}</p>
+                            </div>
                         </div>
-                        <div className="frame-art">
-                            {/* Placeholder for card art */}
-                            <div className="art-placeholder" />
-                        </div>
-                        <div className="frame-type-line">
-                            {categories.split(',')[0]} — {tags.split(',')[0]}
-                        </div>
-                        <div className="frame-text-box">
-                            <p className="flavor-text">{brief}</p>
-                            <p className="card-text">
-                                Categories: {categories}<br />
-                                Tags: {tags}
-                            </p>
-                        </div>
-                        <div className="frame-bottom-info">
-                            <div className="info-left">EN-001</div>
-                            <div className="info-right">&#9679; EN</div>
-                        </div>
+                        { review_type !== 'Basic'
+                            ? <><div className="frame-art">
+                                    {/* Placeholder for card art */}
+                                    <div className="art-placeholder" />
+                                </div>
+                                <div className="frame-type-line">
+                                    {category} — {type}
+                                    {/* {categories.split(',')[0]} — {tags.split(',')[0]} */}
+                                </div>
+                                <div className="frame-text-box">
+                                    <p className="flavor-text">{brief}</p>
+                                    {/* <p className="card-text">
+                                    Categories: {categories}<br />
+                                    Tags: {tags}
+                                    </p> */}
+                                </div>
+                                <div className="frame-bottom-info">
+                                    <div className="info-left">EN-001</div>
+                                    <div className="info-right">&#9679; EN</div>
+                                </div></>
+                            : null
+                        }
                     </div>
                 </div>
                 <div className="card-back">
@@ -80,7 +95,7 @@ const Card = ({ alias, score, categories, tags, brief, comment }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div></Link>
     );
 };
 

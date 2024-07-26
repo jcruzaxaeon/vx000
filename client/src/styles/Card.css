@@ -1,10 +1,14 @@
 /* ./client/src/styles/Card.css */
 
+p {
+    margin: 0;
+}
+
 .card {
     width: 63mm;
     height: 88mm;
     perspective: 1000px;
-    font-family: 'Beleren', serif;
+    font-family: 'Georgia', 'Beleren', serif;
     cursor: pointer;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -14,7 +18,21 @@
     -ms-user-select: none;
 }
 
-.card.flipped {
+.card__basic {
+    width: 63mm;
+    height: 10mm;
+    perspective: 1000px;
+    font-family: 'Georgia', 'Beleren', serif;
+    cursor: pointer;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.card.flipped, .card__basic.flipped {
     transform: rotateY(180deg);
 }
 
@@ -66,17 +84,34 @@
 
 .frame-header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 8%;
-    padding: 0 5%;
+    height: auto;
+    padding: 2% 5%;
     background-color: #bbb;
     border-radius: 5px;
+    font-size: 10px;
+}
+
+.frame-header .line-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+}
+
+.frame-header .line-2 {
+    width: 100%;
+    text-align: left;
+    height: auto;
+    font-style: italic;
 }
 
 .card-name {
     font-size: 0.9em;
     margin: 0;
+
 }
 
 .mana-cost {

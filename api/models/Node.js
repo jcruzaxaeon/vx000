@@ -18,6 +18,16 @@ Node.init({
     allowNull: false,
     defaultValue: 'Noname'
   },
+  category: {
+    type: DataTypes.STRING(45),
+    allowNull: false,
+    defaultValue: 'Category',
+  },
+  type: {
+    type: DataTypes.STRING(45),
+    allowNull: false,
+    defaultValue: 'Type',
+  },
   categories: {
     type: DataTypes.JSON,
     allowNull: true

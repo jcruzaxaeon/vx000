@@ -1,0 +1,80 @@
+
+
+/* CREATE REVIEW STYLES
+
+    ./client/src/styles/CreateReview.css */
+
+    .create-review-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+        color: #333;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .create-review-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+    
+    input,
+    select,
+    textarea {
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+    
+    .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+    
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+    
+    @media (max-width: 768px) {
+        .create-review-container {
+            padding: 1rem;
+        }
+    }

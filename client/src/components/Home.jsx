@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getToken } from '../services/auth.js';
 import Card from './Card.jsx';
+import CreateReviewBasic from './reviews/CreateReviewBasic.jsx';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
@@ -42,8 +43,10 @@ const Home = () => {
 
     return (
         <div style={styles.container}>
-            <h1 style={styles.title}>TYRLYST</h1>
-            <form onSubmit={handleSearch} style={styles.searchForm}>
+            {/* <h1 style={styles.title}>TYRLYST</h1> */}
+            <CreateReviewBasic />
+            {/* [ ] SEARCH - "implement search feature" */}
+            {/* <form onSubmit={handleSearch} style={styles.searchForm}>
                 <input
                     type="text"
                     value={searchTerm}
@@ -52,15 +55,21 @@ const Home = () => {
                     style={styles.searchInput}
                 />
                 <button type="submit" style={styles.searchButton}>Search</button>
-            </form>
+            </form> */}
 
-            <h2 style={styles.subtitle}>Recent Reviews</h2>
+            <h2 style={styles.subtitle}>Featured Reviews</h2>
             <div style={styles.cardContainer}>
                 {reviews.map((review, index) => (
                     <Card
                         key={index}
+                        review_id={review.review_id}
+                        review_type={review.review_type}
                         alias={review.alias}
+                        disambiguation={review.disambiguation}
                         score={review.score}
+                        tier={review.tier}
+                        category={review.category}
+                        type={review.type}
                         categories={review.categories} // .join(', ')
                         tags={review.tags}
                         brief={review.brief}

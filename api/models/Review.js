@@ -16,10 +16,33 @@ Review.init(
       unique: true,
       autoIncrement: true,
     },
+    review_type: {
+      type: DataTypes.STRING(20),
+      defaultValue: 'Standard',
+    },
     alias: {
         type: DataTypes.STRING(255),
         allowNull: false,
         defaultValue: 'Node',
+    },
+    disambiguation: {
+      type: DataTypes.STRING(45),
+      defaultValue: 'Perfect disambiguation'
+    },
+    tier: {
+      type: DataTypes.CHAR(1),
+      allowNull: false,
+      defaultValue: 'C',
+    },
+    category: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: 'Category',
+    },
+    type: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: 'Type',
     },
     score: {
       type: DataTypes.INTEGER,
@@ -28,7 +51,6 @@ Review.init(
     },
     categories: {
       type: DataTypes.JSON,
-      allowNull: false,
     },
     tags: {
       type: DataTypes.JSON,

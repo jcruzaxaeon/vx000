@@ -50,7 +50,7 @@ function IconNavHeader() {
                     {/* <Link to="/grades" title="Grade List">
                         <i className="fas fa-list-ol"></i>
                     </Link> */}
-                    <Link to="/nodes/create" title="Create Node">
+                    <Link to="/reviews/create" title="Write Review">
                         <i className="fas fa-plus-circle"></i>
                     </Link>
                     <Link to="/reviews" title="Read Reviews">
@@ -58,6 +58,7 @@ function IconNavHeader() {
                     </Link>
                 </div>
             </div>
+            <p>TYRLYST</p>
             <div className="login-button">
                 { isValidToken
                     ? <Link to="/" onClick={handleLogout} className="login-link">Logout</Link>
