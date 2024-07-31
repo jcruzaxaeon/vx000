@@ -22,6 +22,14 @@ router.use(express.json());
 
 
 // ### GET, 200 - OK
+// - VERIFY VALID TOKEN
+router.get('/v1/api/token', authenticateUser, (req, res) => {
+    // If the middleware passes, the token is valid
+    res.json({ valid: true, user: { id: req.currentuser.id } }); // , email: req.user.email 
+});
+
+
+// ### GET, 200 - OK
 // - [ ] (!!!) revamp code to only return authenticated user
 // - Return authenticated user's info
 router.get('/v1/api/users', authenticateUser, async (req, res) => {

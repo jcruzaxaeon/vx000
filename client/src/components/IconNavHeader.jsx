@@ -7,10 +7,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getToken, logout } from '../services/auth';
 import { jwtDecode } from 'jwt-decode';
 import '../styles/IconNavHeader.css';
+import { useMessage } from '../contexts/MessageContext.jsx';
 
 function IconNavHeader() {
     const navigate = useNavigate();
     const token = getToken();
+    const { addMessage } = useMessage();
 
     let isValidToken = false;
     let userEmail = '';
@@ -29,7 +31,11 @@ function IconNavHeader() {
     function handleLogout(e) {
         e.preventDefault();
         logout();
-        navigate('/');
+        addMessage('Logout successful', 'success');
+
+        if (window.location.pathname === '/') window.location.reload();
+        else navigate('/', { replace: true });
+
     };
 
     return (
@@ -39,13 +45,13 @@ function IconNavHeader() {
                     <Link to="/" title="Home">
                         <i className="fas fa-home"></i>
                     </Link>
-                    <Link to="/api/users" title="User List">
+                    {/* <Link to="/api/users" title="User List">
                         <i className="fas fa-users"></i>
-                    </Link>
+                    </Link> */}
                     <Link to="/nodes" title="Node List">
                         <i className="fas fa-project-diagram"></i>
                     </Link>
-                {/* </div>
+                    {/* </div>
                 <div className="icon-group"> */}
                     {/* <Link to="/grades" title="Grade List">
                         <i className="fas fa-list-ol"></i>
@@ -60,7 +66,7 @@ function IconNavHeader() {
             </div>
             <p>TYRLYST</p>
             <div className="login-button">
-                { isValidToken
+                {isValidToken
                     ? <Link to="/" onClick={handleLogout} className="login-link">Logout</Link>
                     : <Link to="/login" title="Login" className="login-link">Login</Link>}
             </div>

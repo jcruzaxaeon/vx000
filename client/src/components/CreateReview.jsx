@@ -3,6 +3,7 @@
 // ./client/src/components/CreateReview.jsx
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getToken } from '../services/auth.js';
 import { jwtDecode } from 'jwt-decode';
@@ -27,6 +28,18 @@ const defaultReview = {
 };
 
 const CreateReview = () => {
+
+    // VALIDATION
+    // const navigate = useNavigate();
+    // const [isTokenValid, setIsTokenValid] = useState(false);
+
+    // useEffect(() => {
+    //     (async () => {
+    //         const valid = await verifyToken();
+    //         setIsTokenValid(valid);
+    //     })();
+    // }, []);
+
     const [reviewData, setReviewData] = useState(defaultReview);
 
     async function createNode() {

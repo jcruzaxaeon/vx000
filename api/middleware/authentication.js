@@ -43,7 +43,7 @@ export async function authenticateUser(req, res, next) {
         const user = await User.findByPk(decoded.userId);
         console.log("User:", user);
 
-        if (!user) { return res.status(401).json({message: 'User not found'}); }
+        if (!user) return res.status(401).json({message: 'User not found'});
 
         req.currentuser = user;
         next();

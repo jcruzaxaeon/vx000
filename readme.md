@@ -21,10 +21,11 @@
 ## Action Roster
 
 ### Up Next
-- [ ] complete all CRUD for reviews
 
 ### Action Inventory
-- [ ] add CreateReviewBasic
+- [ ] 
+- [ ] refactor CRUD flow
+- [ ] refactor login flow
 - [ ] add CreateReviewFull
 - [ ] add CreateReviewStandard
 - [ ] add letter grade conversion to save grade as z-score and "tyr"
@@ -80,6 +81,13 @@
 
 
 ## Devlog
+- [ ] display an entire tierlist
+
+### 7/26/2024
+- [x] remove "create basic-review form" from landing
+
+### 7/25/2024
+- [x] complete all CRUD for reviews
 
 ### 7/22/2024
 - [ ] implement letter grade
@@ -143,6 +151,8 @@
     - user-creation was hardcoded for testing
 - [x] create a GET route
 
+### ???
+- [x] add CreateReviewBasic
 
 
 

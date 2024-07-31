@@ -9,6 +9,7 @@ import axios from 'axios';
 import { getToken } from '../../services/auth.js';
 import { jwtDecode } from 'jwt-decode';
 import '../../styles/CreateReview.css';
+import { useMessage } from '../../contexts/MessageContext.jsx';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const defaultReview = {
@@ -25,6 +26,8 @@ const defaultReview = {
 
 const CreateReviewBasic = () => {
     const [reviewData, setReviewData] = useState(defaultReview);
+    const { addMessage } = useMessage();
+
 
     async function createNode() {
         const token = getToken();
@@ -73,13 +76,13 @@ const CreateReviewBasic = () => {
 
             const response = await axios.post(`${apiUrl}/v1/api/reviews`,
                 { ...reviewData, user_fk: userId, node_fk: nodeId },
-                { headers: { 'Authorization': `Bearer ${token}` } },
+                { headers: { 'Authorization': `Bearer ${token}` } }, //[ ]TODO - Update for user-wall
             );
-            console.log('Review created successfully', response.data);
+            addMessage('Review created!', 'success');
             // Reset form or redirect user
             setReviewData(defaultReview);
         } catch (error) {
-            console.error('Failed to create review', error.response?.data || error.message);
+            console.error('Failed to create review [ERR001]:', error.response?.data || error.message);
             // Handle error (show message to user)
         }
     };

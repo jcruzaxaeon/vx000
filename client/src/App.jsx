@@ -8,25 +8,19 @@ import { /*Routes, Route,*/ Link } from 'react-router-dom';
 // import NodeList from './components/NodeList';
 // import { useState } from 'react';
 import IconNavHeader from './components/IconNavHeader';
-// import Landing from './components/Landing';
-// import Header from './components/Header';
-// import CreateNode from './components/CreateNode';
-// import DeleteNode from './components/DeleteNode';
-// import CreateGrade from './components/CreateGrade';
-// import GradeList from './components/GradeList';
-// import Register from './components/Register';
-// import Login from './components/Login';
-// import CreateReview from './components/CreateReview';
-// import ReadReviews from './components/reviews/ReadReviews';
-// import ReadReview from './components/reviews/ReadReview';
 import AppRoutes from './Routes';
+import { MessageProvider } from './contexts/MessageContext.jsx';
+import { MessageDisplay } from './components/MessageDisplay.jsx';
+import './styles/global.css';
 
 function App() {
 
   return (
-    <>
+    <MessageProvider>
       {/* <Header /> */}
+      <div className='app-container'>
       <IconNavHeader />
+      <MessageDisplay />
       <main>
         <AppRoutes />
       </main>
@@ -46,7 +40,8 @@ function App() {
         <Route path='/reviews/:reviewId' element={<ReadReview />} />
         <Route path='/reviews/create' element={<CreateReview />} />
       </Routes> */}
-    </>
+      </div>
+    </MessageProvider>
   )
 }
 

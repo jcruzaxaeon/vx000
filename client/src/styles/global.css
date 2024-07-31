@@ -6,6 +6,16 @@
 
 /* DeleteReview.css */
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+
 .container {
     max-width: 600px;
     margin: 5px auto;

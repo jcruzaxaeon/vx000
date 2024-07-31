@@ -3,15 +3,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { getToken } from '../services/auth.js';
+import { getToken, verifyToken } from '../services/auth.js';
 import Card from './Card.jsx';
 import CreateReviewBasic from './reviews/CreateReviewBasic.jsx';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [reviews, setReviews] = useState([]);
     const [error, setError] = useState(null);
+
+    // VALIDATION
+    // import { getToken, verifyToken } from '../services/auth.js';
+    //
+    const [isTokenValid, setIsTokenValid] = useState(false);
+    useEffect(() => {(async () => {
+        const valid = await verifyToken();
+        setIsTokenValid(valid);
+    })();
+    }, []);
+
+    // REVIEWS
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         fetchReviews();
@@ -44,7 +56,8 @@ const Home = () => {
     return (
         <div style={styles.container}>
             {/* <h1 style={styles.title}>TYRLYST</h1> */}
-            <CreateReviewBasic />
+            { console.log("Verify token:", isTokenValid )}
+            { isTokenValid ? <CreateReviewBasic /> : null}
             {/* [ ] SEARCH - "implement search feature" */}
             {/* <form onSubmit={handleSearch} style={styles.searchForm}>
                 <input

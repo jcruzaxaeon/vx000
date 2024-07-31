@@ -6,11 +6,13 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/auth.js';
 import '../styles/Login.css';
+import { useMessage } from '../contexts/MessageContext.jsx';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { addMessage } = useMessage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,8 +25,9 @@ const Login = () => {
 
     try {
       const response = await login(credentials);
-      console.log('Login successful', response);
-      navigate('/api/users');
+      // console.log('Login successful', response);
+      addMessage('Login successful', 'success');
+      navigate('/');
     } catch (err) {
       setError(err.message || 'Login failed');
     }
