@@ -2,7 +2,7 @@
 
 // CREATE REVIEW: BASIC
 //
-// ./client/src/components/reviews/CreateReviewStandard.jsx
+// ./client/src/components/reviews/CreateReviewBasic.jsx
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -12,10 +12,11 @@ import '../../styles/CreateReview.css';
 import { useMessage } from '../../contexts/MessageContext.jsx';
 
 const apiUrl = import.meta.env.VITE_API_URL;
-const defaultReview = {
+const defaultBasicReview = {
     review_type: 'Basic',
     alias: '',
     disambiguation: '',
+    visibility: 'private',
     tier: 'C',
     // category: '',
     // type: '',
@@ -25,7 +26,7 @@ const defaultReview = {
 };
 
 const CreateReviewBasic = () => {
-    const [reviewData, setReviewData] = useState(defaultReview);
+    const [reviewData, setReviewData] = useState(defaultBasicReview);
     const { addMessage } = useMessage();
 
 
@@ -80,7 +81,7 @@ const CreateReviewBasic = () => {
             );
             addMessage('Review created!', 'success');
             // Reset form or redirect user
-            setReviewData(defaultReview);
+            setReviewData(defaultBasicReview);
         } catch (error) {
             console.error('Failed to create review [ERR001]:', error.response?.data || error.message);
             // Handle error (show message to user)
@@ -89,9 +90,11 @@ const CreateReviewBasic = () => {
 
     return (
         <div className='create-review-container'>
+            <h2>Basic Review</h2>
+            <hr></hr>
             <form onSubmit={handleSubmit} className='create-review-form'>
                 <div className='form-group'>
-                    <label htmlFor='disambiguation'>List Name:</label>
+                    <label htmlFor='disambiguation'>List:</label>
                     <input
                         type='text'
                         id='disambiguation'
@@ -103,7 +106,7 @@ const CreateReviewBasic = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="alias">Item Name:</label>
+                    <label htmlFor="alias">Item:</label>
                     <input
                         type="text"
                         id="alias"
@@ -130,6 +133,20 @@ const CreateReviewBasic = () => {
                         <option value="D">D - Deficient</option>
                         <option value="E">E - Poor</option>
                         <option value="F">F - Failure</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="visibility">Visibility</label>
+                    <select
+                        id="visibility"
+                        name="visibility"
+                        value={reviewData.visibility}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="private">Private</option>
+                        <option value="shared">Shared</option>
+                        <option value="public">Public</option>
                     </select>
                 </div>
                 {/* <div className="form-group">

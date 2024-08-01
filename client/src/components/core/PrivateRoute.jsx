@@ -1,9 +1,8 @@
 
 
-// PRIVATE ROUTE - HOC
 // ./client/src/components/core/PrivateRoute.jsx
 //
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Cookies from 'js-cookie';
 import { verifyToken } from '../../services/auth.js';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
@@ -14,25 +13,41 @@ const PrivateRoute = () => {
     const [isTokenValid, setIsTokenValid] = useState(null);
     const { addMessage } = useMessage();
 
-    // const [] = useState(null);
-    // VALIDATION
-    //
+    const handleInvalidToken = useCallback(() => {
+        addMessage('Unauthorized. Please login.', 'warning');
+    }, [addMessage]);
+
     useEffect(() => {
-        const token = Cookies.get('token');
-        if (!token) { setIsTokenValid(false); return; }
-        if (isTokenValid !== null) return;
-        (async () => {
+        const validateToken = async () => {
+            const token = Cookies.get('token');
+            if (!token) {
+                setIsTokenValid(false);
+                return;
+            }
+            if (isTokenValid !== null) return;
+            
             const valid = await verifyToken();
             setIsTokenValid(valid);
-        })();
+        };
+
+        validateToken();
     }, [isTokenValid]);
 
-    if (isTokenValid === true) return <Outlet />;
+    useEffect(() => {
+        if (isTokenValid === false) {
+            handleInvalidToken();
+        }
+    }, [isTokenValid, handleInvalidToken]);
+
+    if (isTokenValid === null) {
+        return <div><p>Loading...</p></div>;
+    }
+
     if (isTokenValid === false) {
-        addMessage('Unauthorized.  Please login.', 'warning');
         return <Navigate replace to='/' state={{ from: location.pathname }} />;
     }
-    return <div><p>Loading...</p></div>
+
+    return <Outlet />;
 };
 
 export default PrivateRoute;

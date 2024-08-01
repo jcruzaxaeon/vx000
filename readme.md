@@ -154,7 +154,10 @@
 ### ???
 - [x] add CreateReviewBasic
 
+## AI Boilerplate
+- I'm creating a SPA using MySQL, Node.js, and React. 
 
+- I'm creating a SPA using MySQL, Node.js, and React.  I need to add another column to my reviews table that will hold either public, private, or shared.  Public means anyone with link can see.  Private means only creator can see.  Shared means only a subset of signed-in users, explicitly selected by the creator of the review, can see.  I'm guessing that ultimately the creator can create a list per review and maybe the creator can make a "playlist" of users (e.g. work, family, kids)  (1) What should I call this column?, (2) What datatype and attributes should it have?, (3) What additional column(s) might I need to add to manage the public, private, shared options [e.g. I have the following tables users, reviews, and nodes (officially created items to be reviewed)] (4) Might I need a new table (e.g. a linking table)? (I don't know the jargon for this in database "world".
 
 
 

@@ -7,6 +7,7 @@ import { getToken, verifyToken } from '../services/auth.js';
 import Card from './Card.jsx';
 import CreateReviewBasic from './reviews/CreateReviewBasic.jsx';
 const apiUrl = import.meta.env.VITE_API_URL;
+import '../styles/global.css';
 
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -16,31 +17,50 @@ const Home = () => {
     // import { getToken, verifyToken } from '../services/auth.js';
     //
     const [isTokenValid, setIsTokenValid] = useState(false);
-    useEffect(() => {(async () => {
-        const valid = await verifyToken();
-        setIsTokenValid(valid);
-    })();
+    useEffect(() => {
+        (async () => {
+            const valid = await verifyToken();
+            setIsTokenValid(valid);
+        })();
     }, []);
 
     // REVIEWS
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetchReviews();
+        fetchPublicReviews();
     }, []);
 
-    const fetchReviews = async () => {
+    const fetchPublicReviews = async () => {
         try {
-            const token = getToken();
-            const response = await axios.get(`${apiUrl}/v1/api/reviews`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const response = await axios.get(`${apiUrl}/v1/api/reviews/public`, {
+                params: {
+                    limit: 3,
+                    sortBy: 'createdAt',
+                    sortOrder: 'desc'
+                }
             });
-            const recentReviews = response.data.slice(-3).reverse();
-            setReviews(recentReviews);
+
+            if (response.data && response.data.reviews) {
+                setReviews(response.data.reviews);
+            } else {
+                setReviews([]);
+            }
         } catch (err) {
-            console.error('Error fetching reviews:', err);
-            setError('Failed to fetch reviews. Please try again later.');
+            console.error('Error fetching public reviews:', err);
+            setError('Failed to fetch public reviews. Please try again later.');
         }
+        // try {
+        //     const token = getToken();
+        //     const response = await axios.get(`${apiUrl}/v1/api/reviews`, {
+        //         headers: { 'Authorization': `Bearer ${token}` }
+        //     });
+        //     const recentReviews = response.data.slice(-3).reverse();
+        //     setReviews(recentReviews);
+        // } catch (err) {
+        //     console.error('Error fetching reviews:', err);
+        //     setError('Failed to fetch reviews. Please try again later.');
+        // }
     };
 
     if (error) {
@@ -56,8 +76,8 @@ const Home = () => {
     return (
         <div style={styles.container}>
             {/* <h1 style={styles.title}>TYRLYST</h1> */}
-            { console.log("Verify token:", isTokenValid )}
-            { isTokenValid ? <CreateReviewBasic /> : null}
+            {console.log("Verify token:", isTokenValid)}
+            {isTokenValid ? <CreateReviewBasic /> : null}
             {/* [ ] SEARCH - "implement search feature" */}
             {/* <form onSubmit={handleSearch} style={styles.searchForm}>
                 <input
@@ -91,7 +111,10 @@ const Home = () => {
                 ))}
             </div>
 
-            <Link to="/reviews" style={styles.viewAllLink}>Read All Reviews</Link>
+            <div className="button-container">
+                <Link to="/reviews" className="btn submit-btn">My Reviews</Link>
+                <Link to="/reviews/public" className="btn submit-btn">Public Reviews</Link>
+            </div>
             <nav>
                 <ul>
                     {/* <li><Link to="/">Home</Link></li> */}

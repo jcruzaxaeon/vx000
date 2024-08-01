@@ -29,6 +29,11 @@ Review.init(
       type: DataTypes.STRING(45),
       defaultValue: 'Perfect disambiguation'
     },
+    visibility: {
+      type: DataTypes.ENUM('public', 'private', 'shared'),
+      allowNull: false,
+      defaultValue: 'private',
+    },
     tier: {
       type: DataTypes.CHAR(1),
       allowNull: false,
