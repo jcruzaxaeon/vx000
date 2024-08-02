@@ -19,7 +19,8 @@ import ReadReview from './components/reviews/ReadReview';
 import CreateReviewStandard from './components/reviews/CreateReviewStandard';
 import UpdateReview from './components/reviews/UpdateReview';
 import DeleteReview from './components/reviews/DeleteReview';
-import PrivateRoute from './components/core/og-PrivateRoute-1';
+import PrivateRoute from './components/core/PrivateRoute';
+import ReadReviewsPublic from './components/reviews/ReadReviewsPublic';
 
 function AppRoutes() {
   return (
@@ -35,6 +36,7 @@ function AppRoutes() {
       <Route path='/login' element={<Login />} />
       <Route path='/reviews' element={<ReadReviews />} />
       <Route path='/reviews/:reviewId' element={<ReadReview />} />
+      <Route path='/reviews/public' element={<ReadReviewsPublic />} />
       <Route element={<PrivateRoute />}>
         <Route path='/reviews/create' element={<CreateReviewStandard />} />
         <Route path='/reviews/:reviewId/edit' element={<UpdateReview />} />

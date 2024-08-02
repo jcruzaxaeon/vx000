@@ -4,6 +4,7 @@
 
 import express from 'express';
 import Review from '../models/Review.js';
+import User from '../models/User.js';
 import { authenticateUser } from '../middleware/authentication.js';
 
 
@@ -28,7 +29,7 @@ router.get('/v1/api/reviews', authenticateUser, async (req, res) => {
 });
 
 // ### GET Public Reviews - 200 OK
-// 
+//
 router.get('/v1/api/reviews/public', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -37,7 +38,8 @@ router.get('/v1/api/reviews/public', async (req, res) => {
         const offset = (page - 1) * limit;
         
         // Sorting
-        const sortField = req.query.sortBy || 'createdAt';
+        const allowedSortFields = ['createdAt', 'tier', 'alias', 'disambiguation', 'score', 'User.name'];
+        const sortField = allowedSortFields.includes(req.query.sortBy) ? req.query.sortBy : 'createdAt';
         const sortOrder = req.query.sortOrder === 'asc' ? 'ASC' : 'DESC';
 
         // Filtering
@@ -49,23 +51,26 @@ router.get('/v1/api/reviews/public', async (req, res) => {
             whereClause.tier = req.query.tier;
         }
 
-        // You can add more filters here as needed
+        // Determine the order array based on the sortField
+        let order;
+        if (sortField === 'User.name') {
+            order = [[{ model: User, as: 'User' }, 'name', sortOrder]];
+        } else {
+            order = [[sortField, sortOrder]];
+        }
 
         const { count, rows } = await Review.findAndCountAll({
             where: whereClause,
             limit: limit,
             offset: offset,
-            order: [[sortField, sortOrder]],
-            // include: [
-            //     {
-            //         model: User,
-            //         attributes: ['username'] // Include only necessary user info
-            //     },
-            //     {
-            //         model: Node,
-            //         attributes: ['name'] // Include node name if needed
-            //     }
-            // ]
+            order: order,
+            include: [
+                {
+                    model: User,
+                    as: 'User',
+                    attributes: ['name'] // Include only necessary user info
+                },
+            ]
         });
 
         res.json({
@@ -79,6 +84,58 @@ router.get('/v1/api/reviews/public', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+// router.get('/v1/api/reviews/public', async (req, res) => {
+//     try {
+//         const page = parseInt(req.query.page) || 1;
+//         const limit = parseInt(req.query.limit) || 10;
+//         if(limit > 50) limit = 50;
+//         const offset = (page - 1) * limit;
+        
+//         // Sorting
+//         const sortField = req.query.sortBy || 'createdAt';
+//         const sortOrder = req.query.sortOrder === 'asc' ? 'ASC' : 'DESC';
+
+//         // Filtering
+//         const whereClause = {
+//             visibility: 'public'
+//         };
+
+//         if (req.query.tier) {
+//             whereClause.tier = req.query.tier;
+//         }
+
+//         // You can add more filters here as needed
+//         console.log("Pre find");
+//         const { count, rows } = await Review.findAndCountAll({
+//             where: whereClause,
+//             limit: limit,
+//             offset: offset,
+//             order: [[sortField, sortOrder]],
+//             include: [
+//                 {
+//                     model: User,
+//                     as: 'User',
+//                     attributes: ['name'] // Include only necessary user info
+//                 },
+//             //     {
+//             //         model: Node,
+//             //         attributes: ['name'] // Include node name if needed
+//             //     }
+//             ]
+//         });
+
+//         console.log(rows);
+//         res.json({
+//             totalItems: count,
+//             reviews: rows,
+//             currentPage: page,
+//             totalPages: Math.ceil(count / limit)
+//         });
+//     } catch (err) {
+//         console.error('Error fetching public reviews:', err);
+//         res.status(500).send('Internal Server Error');
+//     }
+// });
 
 // ### GET specific review by ID - 200 OK
 // - Update endpoint to `/v1/api/reviews/:id`

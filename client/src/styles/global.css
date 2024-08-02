@@ -91,6 +91,18 @@ input[type="text"] {
     width: 100%; /*NEW*/
 }
 
+.button {
+    flex: 1; /* Makes buttons take equal width */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    text-align: center;
+}
+
 .btn {
     flex: 1; /* Makes buttons take equal width */
     padding: 10px 15px;
@@ -101,6 +113,7 @@ input[type="text"] {
     transition: background-color 0.3s;
     font-weight: bold;
     text-align: center;
+    text-decoration: none;
 }
 
 .btn--delete {
