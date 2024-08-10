@@ -4,7 +4,9 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+// import ReviewCard from './ReviewCard';
 import './ReadReviewsPublic.css';
+import ReviewTable from './ReviewTable';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -28,6 +30,7 @@ const ReadReviewsPublic = () => {
                 },
             });
             const newReviews = response.data.reviews;
+            console.log('New reviews:', newReviews);
             setReviews(prevReviews => {
                 // Create a Set of existing review IDs for efficient lookup
                 const existingIds = new Set(prevReviews.map(review => review.review_id));
@@ -120,17 +123,26 @@ const ReadReviewsPublic = () => {
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
             >
-                {reviews.map((review) => (
-                    <div key={review.review_id} className="review-card">
-                        <div className="review-content">
-                            <strong>{review.alias}</strong>
-                            <em>{review.disambiguation}</em>
-                            <span>{review.User?.name || 'Anonymous'}</span>
-                            <span>{new Date(review.createdAt).toLocaleDateString()}</span>
-                        </div>
-                        <div className="review-tier">{review.tier}</div>
-                    </div>
-                ))}
+                { reviews && reviews.length > 0 
+                    ? <ReviewTable reviews={reviews} size='basic' />
+                    : <p>No reviews available</p>
+                
+
+                // reviews.map((review) => (
+                //     <ReviewTable key={review.review_id} review={review} size="basic" />
+
+
+                    // <div key={review.review_id} className="review-card">
+                    //     <div className="review-content">
+                    //         <strong>{review.alias}</strong>
+                    //         <em>{review.disambiguation}</em>
+                    //         <span>{review.User?.name || 'Anonymous'}</span>
+                    //         <span>{new Date(review.createdAt).toLocaleDateString()}</span>
+                    //     </div>
+                    //     <div className="review-tier">{review.tier}</div>
+                    // </div>
+                // ))
+                }
             </InfiniteScroll>
         </div>
     );

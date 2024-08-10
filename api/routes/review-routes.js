@@ -60,6 +60,8 @@ router.get('/v1/api/reviews/public', async (req, res) => {
         }
 
         const { count, rows } = await Review.findAndCountAll({
+            attributes: ['review_id', 'review_type', 'tierlist', 'item', 'details', 'tier', 
+        'visibility', 'alias', 'disambiguation', 'score', 'createdAt'],
             where: whereClause,
             limit: limit,
             offset: offset,
@@ -72,6 +74,8 @@ router.get('/v1/api/reviews/public', async (req, res) => {
                 },
             ]
         });
+
+        console.log('ROWS:::::', rows);
 
         res.json({
             totalItems: count,
@@ -157,12 +161,17 @@ router.get('/v1/api/reviews/:id', async (req, res) => {
 // ### POST a new review - 201 Created
 // - Update endpoint to `/v1/api/reviews`
 router.post('/v1/api/reviews', async (req, res) => {
-    const { review_type, alias, disambiguation, visibility, 
+    const { review_type, tierlist, item, details,
+        alias, disambiguation, visibility, 
         tier, category, type, score, categories, tags, brief, comment, user_fk, node_fk, rubric_fk } = req.body;
+        console.log("Request Body:", req.body);
 
     try {
         const newReview = await Review.create({
             review_type,
+            tierlist,
+            item,
+            details,
             alias,
             disambiguation,
             visibility,
@@ -189,7 +198,8 @@ router.post('/v1/api/reviews', async (req, res) => {
 // - Endpoint: `/v1/api/reviews/:id`
 router.put('/v1/api/reviews/:id', async (req, res) => {
     const reviewId = req.params.id;
-    const { review_type, alias, disambiguation, visibility, tier,
+    const { review_type, alias, tierlist, item, details,
+        disambiguation, visibility, tier,
         category, type, score, categories, tags,
         brief, comment, user_fk, node_fk, rubric_fk } = req.body;
 
@@ -199,7 +209,8 @@ router.put('/v1/api/reviews/:id', async (req, res) => {
         if (!review) return res.status(404).send('Review not found.');
 
         await review.update({
-            review_type, alias, disambiguation, visibility, tier,
+            review_type, alias, tierlist, item, details,
+            disambiguation, visibility, tier,
             category, type, score, categories, tags,
             brief, comment, user_fk, node_fk, rubric_fk
         });

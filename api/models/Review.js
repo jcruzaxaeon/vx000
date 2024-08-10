@@ -1,5 +1,3 @@
-
-
 // ./api/models/Review.js
 
 import { Model, DataTypes } from 'sequelize';
@@ -17,91 +15,96 @@ Review.init(
       autoIncrement: true,
     },
     review_type: {
-      type: DataTypes.STRING(20),
-      defaultValue: 'Standard',
+      type: DataTypes.ENUM('basic', 'standard', 'full'),
+      defaultValue: 'basic',
+    },
+    tierlist: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    item: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    details: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    tier: {
+      type: DataTypes.ENUM('S', 'A', 'B', 'C', 'D', 'E', 'F'),
+      defaultValue: 'C',
+    },
+    visibility: {
+      type: DataTypes.ENUM('private', 'shared', 'public'),
+      defaultValue: 'private',
     },
     alias: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-        defaultValue: 'Node',
+      type: DataTypes.STRING(255),
+      defaultValue: 'Node',
     },
     disambiguation: {
       type: DataTypes.STRING(45),
-      defaultValue: 'Perfect disambiguation'
-    },
-    visibility: {
-      type: DataTypes.ENUM('public', 'private', 'shared'),
-      allowNull: false,
-      defaultValue: 'private',
-    },
-    tier: {
-      type: DataTypes.CHAR(1),
-      allowNull: false,
-      defaultValue: 'C',
+      defaultValue: 'Perfect disambiguation',
     },
     category: {
       type: DataTypes.STRING(45),
-      allowNull: false,
       defaultValue: 'Category',
     },
     type: {
       type: DataTypes.STRING(45),
-      allowNull: false,
       defaultValue: 'Type',
-    },
-    score: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
-    categories: {
-      type: DataTypes.JSON,
-    },
-    tags: {
-      type: DataTypes.JSON,
-    },
-    brief: {
-      type: DataTypes.STRING(255),
-    },
-    comment: {
-      type: DataTypes.TEXT, // This can store longer text descriptions
     },
     user_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'users', // Referenced table name
-        key: 'user_id', // Column name in the referenced table
-      },
     },
     node_fk: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'nodes', // Referenced table name
-        key: 'node_id', // Column name in the referenced table
-      },
     },
     rubric_fk: {
       type: DataTypes.INTEGER,
-      allowNull: true,
       defaultValue: 1,
     },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW, // Use Sequelize's NOW function for automatic timestamps
+      defaultValue: DataTypes.NOW,
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW, // Use Sequelize's NOW function for automatic timestamps
+      defaultValue: DataTypes.NOW,
+    },
+    comment: {
+      type: DataTypes.TEXT('medium'),
+      allowNull: true,
+    },
+    data: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    brief: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    categories: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    tags: {
+      type: DataTypes.JSON,
+      allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: 'Review', // Sequelize's model-name
-    tableName: 'reviews', // Explicitly specifying the DB table name
+    modelName: 'Review',
+    tableName: 'reviews',
   }
 );
 

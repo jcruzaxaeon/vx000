@@ -1,26 +1,19 @@
-
-
-// CREATE REVIEW: BASIC
-//
-// ./client/src/components/reviews/CreateReviewBasic.jsx
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { getToken } from '../../services/auth.js';
 import { jwtDecode } from 'jwt-decode';
 import '../../styles/CreateReview.css';
+import '../../styles/global.css';
 import { useMessage } from '../../contexts/MessageContext.jsx';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const defaultBasicReview = {
-    review_type: 'Basic',
-    alias: '',
-    disambiguation: '',
-    visibility: 'private',
+    review_type: 'basic',
+    tierlist: '',
+    item: '',
+    details: '',
     tier: 'C',
-    // category: '',
-    // type: '',
-    brief: '',
+    visibility: 'private',
     user_fk: 1,
     node_fk: 1,
 };
@@ -29,16 +22,13 @@ const CreateReviewBasic = () => {
     const [reviewData, setReviewData] = useState(defaultBasicReview);
     const { addMessage } = useMessage();
 
-
     async function createNode() {
         const token = getToken();
         const userId = parseInt(jwtDecode(token).userId, 10);
 
         const node = {
-            name: `${reviewData.alias} ${reviewData.disambiguation}`,
-            // category: reviewData.category,
-            // type: reviewData.type,
-            brief: reviewData.brief,
+            name: `${reviewData.item} (${reviewData.tierlist})`,
+            brief: reviewData.details,
             owner_fk: userId,
         };
 
@@ -50,7 +40,7 @@ const CreateReviewBasic = () => {
                 },
             });
 
-            const ok = response.status >= 200 && response.status < 300; //!!!
+            const ok = response.status >= 200 && response.status < 300;
             console.log("New Node Response:", ok);
             if (!ok) throw new Error('Failed to create node');
 
@@ -77,43 +67,52 @@ const CreateReviewBasic = () => {
 
             const response = await axios.post(`${apiUrl}/v1/api/reviews`,
                 { ...reviewData, user_fk: userId, node_fk: nodeId },
-                { headers: { 'Authorization': `Bearer ${token}` } }, //[ ]TODO - Update for user-wall
+                { headers: { 'Authorization': `Bearer ${token}` } },
             );
             addMessage('Review created!', 'success');
-            // Reset form or redirect user
             setReviewData(defaultBasicReview);
         } catch (error) {
             console.error('Failed to create review [ERR001]:', error.response?.data || error.message);
-            // Handle error (show message to user)
         }
     };
 
     return (
         <div className='create-review-container'>
-            <h2>Basic Review</h2>
-            <hr></hr>
-            <form onSubmit={handleSubmit} className='create-review-form'>
+            {/* <h2>Basic Review</h2>
+            <hr /> */}
+            <form onSubmit={handleSubmit}>
                 <div className='form-group'>
-                    <label htmlFor='disambiguation'>List:</label>
+                    <label htmlFor='tierlist'>Tier List:</label>
                     <input
                         type='text'
-                        id='disambiguation'
-                        name='disambiguation'
-                        value={reviewData.disambiguation}
+                        id='tierlist'
+                        name='tierlist'
+                        value={reviewData.tierlist}
                         onChange={handleChange}
-                        // placeholder='Parks in Los Angeles'
+                        // placeholder='e.g., Parks in Los Angeles'
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="alias">Item:</label>
+                    <label htmlFor="item">Item:</label>
                     <input
                         type="text"
-                        id="alias"
-                        name="alias"
-                        value={reviewData.alias}
+                        id="item"
+                        name="item"
+                        value={reviewData.item}
                         onChange={handleChange}
-                        // placeholder='Mar Vista Park'
+                        // placeholder='e.g., Mar Vista Park'
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="details">Details:</label>
+                    <textarea
+                        id="details"
+                        name="details"
+                        value={reviewData.details}
+                        onChange={handleChange}
+                        // placeholder='Brief description or context'
                         required
                     />
                 </div>
@@ -149,22 +148,13 @@ const CreateReviewBasic = () => {
                         <option value="public">Public</option>
                     </select>
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="brief">Brief</label>
-                    <textarea
-                        id="brief"
-                        name="brief"
-                        value={reviewData.brief}
-                        onChange={handleChange}
-                        required
-                    />
-                </div> */}
-                <button type="submit" className="submit-btn">Submit Review</button>
-                <hr />
+                <div className="button-container">
+                    <button type="submit" className="button button--blue">Save Basic Review</button>
+                    <button type="submit" className="button button--blue">Next &gt;&gt;&gt;</button>
+                </div>
             </form>
         </div>
     );
 };
 
 export default CreateReviewBasic;
-

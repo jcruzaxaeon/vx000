@@ -1,7 +1,7 @@
 .public-reviews {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    padding: 5px;
   }
   
   .filters {
@@ -12,9 +12,10 @@
     display: flex;
     justify-content: space-between;
     background-color: #f0f0f0;
-    padding: 10px;
+    padding: 10px 0 10px 0;
     font-weight: bold;
     border-bottom: 2px solid #ddd;
+    /* max-width: 600px; */
   }
   
   .header-item {
