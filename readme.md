@@ -23,7 +23,7 @@
 ### Up Next
 
 ### Action Inventory
-- [ ] 
+- [ ] display an entire tierlist
 - [ ] refactor CRUD flow
 - [ ] refactor login flow
 - [ ] add CreateReviewFull
@@ -81,7 +81,9 @@
 
 
 ## Devlog
-- [ ] display an entire tierlist
+
+### SendGrid Justification
+- Selecting SendGrid as transactional email service provider for things like password reset because of the permanent 100 emails/day free-tier
 
 ### 7/26/2024
 - [x] remove "create basic-review form" from landing
