@@ -85,6 +85,14 @@
 ### SendGrid Justification
 - Selecting SendGrid as transactional email service provider for things like password reset because of the permanent 100 emails/day free-tier
 
+### 8/12/2024
+- [x] Stop tracking .env.development and .env.production
+
+```s
+$ git rm --cached .env.development .env.production
+$ git commit -m "Stop tracking .env.development and .env.production"
+```
+
 ### 7/26/2024
 - [x] remove "create basic-review form" from landing
 
