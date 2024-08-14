@@ -21,6 +21,8 @@ import UpdateReview from './components/reviews/UpdateReview';
 import DeleteReview from './components/reviews/DeleteReview';
 import PrivateRoute from './components/core/PrivateRoute';
 import ReadReviewsPublic from './components/reviews/ReadReviewsPublic';
+import ResetPasswordRequest from './components/ResetPasswordRequest';
+import ResetPassword from './components/ResetPassword';
 
 function AppRoutes() {
   return (
@@ -37,6 +39,8 @@ function AppRoutes() {
       <Route path='/reviews' element={<ReadReviews />} />
       <Route path='/reviews/:reviewId' element={<ReadReview />} />
       <Route path='/reviews/public' element={<ReadReviewsPublic />} />
+      <Route path='/reset-password' element={<ResetPasswordRequest />} />
+      <Route path='/reset-password/:token' element={<ResetPassword />} />
       <Route element={<PrivateRoute />}>
         <Route path='/reviews/create' element={<CreateReviewStandard />} />
         <Route path='/reviews/:reviewId/edit' element={<UpdateReview />} />

@@ -5,7 +5,10 @@
 import express from 'express';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import { authenticateUser, generateToken } from '../middleware/authentication.js';
+import { sendResetEmail } from '../services/email.js';
+import { Op } from 'sequelize';
 
 class Report extends Error {
     constructor(message, errs) {
@@ -110,7 +113,65 @@ router.post('/v1/api/login', async (req, res, next) => {
 
 
 
-// 
+// ### POST, 201 - Initiate a Password Reset
+router.post('/v1/api/reset-password-request', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ where: { email } });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const resetToken = crypto.randomBytes(20).toString('hex');
+        const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
+
+        await user.update({
+            reset_token: resetToken,
+            reset_token_expiry: resetTokenExpiry
+        });
+
+        await sendResetEmail(email, resetToken);
+
+        res.json({ message: 'Password reset email sent' });
+    } catch (error) {
+        console.error('Error in password reset request:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
+
+// ### POST, 201 - Complete a Password Reset
+router.post('/v1/api/reset-password', async (req, res) => {
+    const { token, newPassword } = req.body;
+    console.log('RESET PASSWORD ()()())()()()');
+
+    try {
+        const user = await User.findOne({
+            where: {
+                reset_token: token,
+                reset_token_expiry: { [Op.gt]: Date.now() }
+            }
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired reset token' });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        await user.update({
+            password: hashedPassword,
+            resetToken: null,
+            resetTokenExpiry: null
+        });
+
+        res.json({ message: 'Password reset successful' });
+    } catch (error) {
+        console.error('Error in password reset:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
 
 export default router;
-
