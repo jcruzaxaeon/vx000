@@ -9,6 +9,7 @@ import CreateReviewBasic from './reviews/CreateReviewBasic.jsx';
 const apiUrl = import.meta.env.VITE_API_URL;
 import '../styles/normalize.css';
 import '../styles/global.css';
+import SearchBar from './SearchBar.jsx';
 
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -79,8 +80,9 @@ const Home = () => {
 
             {/* CREATE BASIC REVIEW COMPONENT */}
             {console.log("Verify token:", isTokenValid)}
+            <SearchBar />
             {isTokenValid ? <CreateReviewBasic /> : null}
-            <br />
+            {/* <br /> */}
 
             {/* NAVIGATION */}
             <div className='container1'>
@@ -104,8 +106,7 @@ const Home = () => {
                 />
                 <button type="submit" style={styles.searchButton}>Search</button>
             </form> */}
-
-            <h2>Featured Reviews</h2>
+            <h2 className='subtitle'>Featured Tierlists</h2>
             <div className='card-container'>
                 {reviews.map((review, index) => (
                     <Card
@@ -122,6 +123,8 @@ const Home = () => {
                         tags={review.tags}
                         brief={review.brief}
                         comment={review.comment}
+                        item={review.item}
+                        tierlist={review.tierlist}
                     />
                 ))}
             </div>

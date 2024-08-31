@@ -1,0 +1,59 @@
+review_id,review_type,tierlist,item,details,tier,visibility,alias,disambiguation,category,type,user_fk,node_fk,rubric_fk,createdAt,updatedAt,comment,data,score,brief,categories,tags
+1,NULL,"List Name",NULL,NULL,C,private,"Node Name 5","Perfect disambiguation",Category,Type,14,21,1,"2024-07-16 17:26:25","2024-07-16 17:26:25",,NULL,0,,""Cat"",""#tag1, #tag2""
+2,NULL,"List Name",NULL,NULL,C,private,Ramen,"Perfect disambiguation",Category,Type,14,22,1,"2024-07-16 17:34:23","2024-07-16 17:34:23","One of my favorite soups.",NULL,4,"Noodle soup",""Meal"",""#japanese, #food""
+3,NULL,"List Name",NULL,NULL,C,private,Menudo,"Perfect disambiguation",Category,Type,14,23,1,"2024-07-16 18:23:37","2024-07-16 18:23:37","Longo comment",NULL,4,Yum!,""Meal, Soup"",""#mexican""
+4,NULL,"List Name",NULL,NULL,C,private,Insane,"Perfect disambiguation",Category,Type,14,24,1,"2024-07-17 07:05:27","2024-07-17 07:05:27","band: "Cavalera Conspiracy", album: "Psychosis"",NULL,4,,""Song"",""#heavy-metal""
+5,NULL,"List Name",NULL,NULL,C,private,"We Who Are Not As Others 2","Perfect disambiguation",Category,Type,14,27,1,"2024-07-19 21:12:41","2024-07-19 21:12:41","Very good.",NULL,4,Good,""Song by Sepultura"",""#groove-metal""
+6,NULL,"List Name",NULL,NULL,C,private,"Pickup Full of Pink Carnations","Album by The Vaccines",Category,Type,14,28,1,"2024-07-19 21:58:33","2024-07-19 21:58:33","Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",NULL,4,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",""Indie Rock"",""#chill""
+7,NULL,"List Name",NULL,NULL,C,private,"Liquid Death","Sparkling Water",Category,Type,14,29,1,"2024-07-22 14:33:57","2024-07-22 14:33:57","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",NULL,4,"Sparkling water in an aluminum can that looks like a beer can decorated in a "metal" aesthetic.",""Drink - Sparkling Water"",""#tag1, #tag2""
+8,NULL,"List Name",NULL,NULL,B,private,"Liquid Death","Mountain Water 5",Drink,Water,14,35,1,"2024-07-23 18:45:43","2024-07-23 18:45:43",NULL,NULL,0,"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",NULL,NULL
+9,NULL,"List Name",NULL,NULL,C,private,Item,"Disam 1",Test,Blue,14,36,1,"2024-07-23 18:49:14","2024-07-23 18:49:14",NULL,NULL,0,"Brief description.",NULL,NULL
+10,NULL,"List Name",NULL,NULL,C,private,A,D,Cat,Type,14,37,1,"2024-07-23 18:50:02","2024-07-23 18:50:02",NULL,NULL,0,Brief,NULL,NULL
+11,NULL,"List Name",NULL,NULL,C,private,A,D1,C,T,14,38,1,"2024-07-23 18:52:29","2024-07-23 18:52:29",NULL,NULL,0,B,NULL,NULL
+12,NULL,"List Name",NULL,NULL,C,private,Eveready,"Super Heavy Duty AA Batteries",Battery,"Super Heavy Duty AA",14,39,1,"2024-07-23 18:54:26","2024-07-23 18:54:26",NULL,NULL,0,Brief,NULL,NULL
+13,NULL,"List Name",NULL,NULL,C,private,"Profile Ball 1.0","Papermate Pen","Writing Tool",Pen,14,40,1,"2024-07-23 18:59:47","2024-07-23 18:59:47",NULL,NULL,0,Brief,NULL,NULL
+14,NULL,"List Name",NULL,NULL,A,private,Quesadilla,"Food from Guisados in Hermosa Beach",Category,Type,14,41,1,"2024-07-23 21:22:22","2024-07-23 21:22:22",NULL,NULL,0,,NULL,NULL
+15,NULL,"List Name",NULL,NULL,A,private,"Taco de Chuleta en Chile Verde","Food from Guisados in Hermosa Beach",Category,Type,14,42,1,"2024-07-23 21:26:04","2024-07-23 21:26:04",NULL,NULL,0,,NULL,NULL
+16,NULL,"List Name",NULL,NULL,B,private,"Taco de Tinga","Guisados - Hermosa Beach",Category,Type,14,43,1,"2024-07-23 22:09:52","2024-07-23 22:09:52",NULL,NULL,0,,NULL,NULL
+17,NULL,"List Name",NULL,NULL,C,private,"PaperMate Profile Ball 1.0","Ballpoint Pens",Category,Type,14,44,1,"2024-07-24 01:08:34","2024-07-24 01:08:34",NULL,NULL,0,,NULL,NULL
+18,NULL,"List Name",NULL,NULL,C,private,"Bill Rosendahl Del Rey Park","Parks in Los Angeles",Category,Type,14,45,1,"2024-07-24 01:12:36","2024-07-24 01:12:36",NULL,NULL,0,,NULL,NULL
+19,NULL,"List Name",NULL,NULL,S,private,Ramen,Meals,Category,Type,14,46,1,"2024-07-24 01:16:23","2024-07-24 01:16:23",NULL,NULL,0,,NULL,NULL
+20,basic,"List Name",NULL,NULL,C,private,"Sharpie Fine Point","Permanent Markers",Category,Type,14,47,1,"2024-07-24 04:19:40","2024-07-24 04:19:40",NULL,NULL,0,,NULL,NULL
+21,basic,"List Name",NULL,NULL,B,private,"Liquid Death Mountain Water","Bottled Water",Category,Type,14,48,1,"2024-07-24 04:25:52","2024-07-24 04:25:52",NULL,NULL,0,,NULL,NULL
+22,basic,"List Name",NULL,NULL,S,private,"Liquid Death Sparkling Water 2",Refreshments,"Bottled Water",Sparkling,14,49,1,"2024-07-24 05:05:31","2024-07-25 04:13:29",,NULL,0,,"""",""""
+26,basic,"List Name",NULL,NULL,S,private,"Milwaukee 48-22-6100","Lineman's Pliers",Category,Type,14,53,1,"2024-07-26 06:37:48","2024-07-26 06:38:20",,NULL,0,,"""",""""
+27,basic,"List Name",NULL,NULL,B,private,"Mint 3",Tea,Category,Type,14,54,1,"2024-07-26 21:50:29","2024-07-26 21:50:29",NULL,NULL,0,,NULL,NULL
+28,basic,"List Name",NULL,NULL,B,private,"Test 6",Testing,Category,Type,14,55,1,"2024-07-26 21:53:35","2024-07-26 21:53:35",NULL,NULL,0,,NULL,NULL
+29,basic,"List Name",NULL,NULL,B,private,T5,T,Category,Type,14,56,1,"2024-07-26 22:04:33","2024-07-26 22:04:33",NULL,NULL,0,,NULL,NULL
+30,basic,"List Name",NULL,NULL,B,private,T6,T,Category,Type,14,57,1,"2024-07-26 22:05:32","2024-07-26 22:05:32",NULL,NULL,0,,NULL,NULL
+31,basic,"List Name",NULL,NULL,C,private,T1,TT,Category,Type,14,58,1,"2024-07-30 22:06:07","2024-07-30 22:06:07",NULL,NULL,0,,NULL,NULL
+32,basic,"List Name",NULL,NULL,S,private,T1,"List Name T1",Category,Type,14,59,1,"2024-07-31 01:52:27","2024-07-31 01:52:27",NULL,NULL,0,,NULL,NULL
+33,basic,"List Name",NULL,NULL,C,private,T2,"List Name T2",Category,Type,10,60,1,"2024-07-31 02:00:02","2024-07-31 02:00:02",NULL,NULL,0,,NULL,NULL
+34,basic,"List Name",NULL,NULL,C,public,"Sometimes, I Swear","Songs from Pickup Full of Pink Carnations",Category,Type,14,61,1,"2024-08-01 06:15:33","2024-08-01 06:15:33",NULL,NULL,0,,NULL,NULL
+35,basic,"List Name",NULL,NULL,B,public,"Heartbreak Kid","Songs from Pickup Full of Pink Carnations",Category,Type,14,62,1,"2024-08-01 06:15:51","2024-08-01 06:15:51",NULL,NULL,0,,NULL,NULL
+36,basic,"List Name",NULL,NULL,C,public,"Lunar Eclipse","Songs from Pickup Full of Pink Carnations",Category,Type,14,63,1,"2024-08-01 06:16:31","2024-08-01 06:16:31",NULL,NULL,0,,NULL,NULL
+37,basic,"List Name",NULL,NULL,A,public,"Love to Walk Away","Songs from Pickup Full of Pink Carnations",Category,Type,19,64,1,"2024-08-01 06:37:18","2024-08-01 06:37:18",NULL,NULL,0,,NULL,NULL
+38,basic,"Test List",NULL,NULL,B,public,Devant,"Songs on Ornaments album by Sferro",Category,Type,19,65,1,"2024-08-01 06:54:26","2024-08-01 06:54:44",,NULL,0,,"""",""""
+39,basic,"Test List",NULL,NULL,A,public,"Rhinoceros on Gish by Smashing Pumpkins",Songs,Category,Type,19,66,1,"2024-08-01 06:59:40","2024-08-01 06:59:40",NULL,NULL,0,,NULL,NULL
+40,basic,"Indie Rock Songs","Civil Engineer","by Astronauts",B,public,"Civil Engineer by Astronauts","Indie Rock Songs",Category,Type,19,67,1,"2024-08-02 06:20:20","2024-08-02 06:20:20",NULL,NULL,0,,NULL,NULL
+41,basic,"Alternative Rock Songs","No Rain","by Blind Melon",S,public,"No Rain by Blind Melon","Alternative Rock Songs",Category,Type,19,68,1,"2024-08-02 06:26:45","2024-08-02 06:26:45",NULL,NULL,0,,NULL,NULL
+42,basic,"Indie Rock Songs","Talking Backwards","by Real Estate",B,public,"Talking Backwards by Real Estate","Indie Rock Songs Lorem ipsum dolor sit amet",Category,Type,19,69,1,"2024-08-02 06:31:06","2024-08-05 21:02:16",,NULL,0,,"""",""""
+43,basic,"Musical Masterpieces","Never Far","by Humans are Such a Fragile Machine",S,public,"Never Far","Classical Music",Category,Type,19,70,1,"2024-08-05 21:21:13","2024-08-05 21:21:13",NULL,NULL,0,,NULL,NULL
+44,basic,"Musical Masterpieces","False God","by Paul Harris",S,public,"False God by Paul Harris","Best Songs",Category,Type,19,71,1,"2024-08-05 21:51:52","2024-08-05 21:51:52",NULL,NULL,0,,NULL,NULL
+45,basic,"List Name",NULL,NULL,A,public,Node,"Perfect disambiguation",Category,Type,19,72,1,"2024-08-08 06:02:51","2024-08-08 06:02:51",NULL,NULL,0,NULL,NULL,NULL
+46,basic,"List Name",NULL,NULL,C,public,Node,"Perfect disambiguation",Category,Type,19,73,1,"2024-08-08 06:06:14","2024-08-08 06:06:14",NULL,NULL,0,NULL,NULL,NULL
+47,basic,"Beers: Los Angeles II","Greetings from El Segundo","Beer by El Segundo Brewing Company",A,public,Node,"Perfect disambiguation",Category,Type,19,75,1,"2024-08-08 06:12:18","2024-08-08 06:12:18",NULL,NULL,0,NULL,NULL,NULL
+48,basic,"Son del Eje","Cumbia Sobre el Mar","Song by Quantic, Flowering Inferno",A,public,Node,"Perfect disambiguation",Category,Type,19,76,1,"2024-08-08 06:45:53","2024-08-08 06:45:53",NULL,NULL,0,NULL,NULL,NULL
+49,basic,"Son del Eje","Willy's Merengue","Song by Los Miticos del Ritmo",A,public,Node,"Perfect disambiguation",Category,Type,19,77,1,"2024-08-08 06:46:36","2024-08-08 06:46:36",NULL,NULL,0,NULL,NULL,NULL
+50,basic,"Instrumental Metal",Gnosis,"Album by Russian Circles",A,public,Node,"Perfect disambiguation",Category,Type,19,78,1,"2024-08-08 08:02:19","2024-08-08 08:02:19",NULL,NULL,0,NULL,NULL,NULL
+51,basic,"90s Alternative Rock","The Distance","Song by CAKE",B,public,Node,"Perfect disambiguation",Category,Type,19,79,1,"2024-08-08 08:11:55","2024-08-08 08:11:55",NULL,NULL,0,NULL,NULL,NULL
+52,basic,"90s Alternative Rock","In the Meantime","Song by Spacehog",C,public,Node,"Perfect disambiguation",Category,Type,19,80,1,"2024-08-08 08:13:24","2024-08-08 08:13:24",NULL,NULL,0,NULL,NULL,NULL
+53,basic,"90s Alternative Rock","No Rain","Song by Blind Melon",S,public,Node,"Perfect disambiguation",Category,Type,19,81,1,"2024-08-08 08:16:13","2024-08-08 08:16:13",NULL,NULL,0,NULL,NULL,NULL
+54,basic,"Alternative Dance Playlist","SEXY DANCE","Song by Masayoshi Takanaka on album AN INSATIABLE HIGH",S,public,Node,"Perfect disambiguation",Category,Type,19,82,1,"2024-08-08 08:22:36","2024-08-08 08:22:36",NULL,NULL,0,NULL,NULL,NULL
+55,basic,"Mexican Playlist","Cuatro Velas","Song by Ezequiel Pena",S,public,Node,"Perfect disambiguation",Category,Type,19,83,1,"2024-08-08 08:33:43","2024-08-08 08:33:43",NULL,NULL,0,NULL,NULL,NULL
+56,basic,"Indie Music",Hadsel,"Song by Beirut on Album Hadsel",C,public,Node,"Perfect disambiguation",Category,Type,19,84,1,"2024-08-11 05:41:01","2024-08-11 05:41:01",NULL,NULL,0,NULL,NULL,NULL
+57,basic,"Indie Music","So Many Plans","Song by Beirut on Album Hadsel",C,public,Node,"Perfect disambiguation",Category,Type,19,85,1,"2024-08-11 05:55:27","2024-08-11 05:55:27",NULL,NULL,0,NULL,NULL,NULL
+58,basic,"Indie Music",Stokmarknes,"Song by Beirut on Album Hadsel",B,public,Node,"Perfect disambiguation",Category,Type,19,86,1,"2024-08-11 05:59:53","2024-08-11 05:59:53",NULL,NULL,0,NULL,NULL,NULL
+59,basic,"Indie Music","January 18th","Song by Beirut on Album Hadsel",A,public,Node,"Perfect disambiguation",Category,Type,19,87,1,"2024-08-11 06:07:45","2024-08-11 06:07:45",NULL,NULL,0,NULL,NULL,NULL
+60,basic,"Indie Music","A Candle's Fire","Song by Beirut on Album The Rip Tide",B,public,Node,"Perfect disambiguation",Category,Type,19,88,1,"2024-08-11 06:13:14","2024-08-11 06:13:14",NULL,NULL,0,NULL,NULL,NULL
+61,basic,"Indie Music","Santa Fe","Song by Beirut on Album The Rip Tide",A,public,Node,"Perfect disambiguation",Category,Type,19,89,1,"2024-08-11 06:14:11","2024-08-11 06:14:11",NULL,NULL,0,NULL,NULL,NULL

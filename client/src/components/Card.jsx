@@ -7,7 +7,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Card.css';
 
-const Card = ({ review_id, review_type, alias, disambiguation, tier, category, type, score, categories, tags, brief, comment }) => {
+const Card = ({ review_id, review_type, alias, disambiguation, tier, category, type, score, categories, tags, brief, comment,
+    item, tierlist
+ }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
@@ -45,7 +47,7 @@ const Card = ({ review_id, review_type, alias, disambiguation, tier, category, t
         <Link to={`/reviews/${review_id}/edit`}>
         <div
             ref={cardRef}
-            className={`${review_type !== 'Basic' ? 'card' : 'card__basic'} ${isFlipped ? 'flipped' : ''}`}
+            className={`${review_type !== 'basic' ? 'card' : 'card__basic'} ${isFlipped ? 'flipped' : ''}`}
             onMouseDown={handleStart}
             onMouseMove={handleMove}
             onTouchStart={handleStart}
@@ -55,14 +57,14 @@ const Card = ({ review_id, review_type, alias, disambiguation, tier, category, t
                     <div className="card-frame">
                         <div className="frame-header">
                             <div className='line-1'>
-                                <h2 className="card-name">{alias}</h2>
+                                <h2 className="card-name">{item}</h2>
                                 <div className="mana-cost">{tier}</div>
                             </div>
                             <div className='line-2'>
-                                <p>{disambiguation}</p>
+                                <p>{tierlist}</p>
                             </div>
                         </div>
-                        { review_type !== 'Basic'
+                        { review_type !== 'basic'
                             ? <><div className="frame-art">
                                     {/* Placeholder for card art */}
                                     <div className="art-placeholder" />

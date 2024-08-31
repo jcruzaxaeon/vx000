@@ -4,6 +4,9 @@
 // ./client/src/components/SearchBar.jsx
 
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import '../styles/normalize.css';
 import '../styles/global.css';
 
 const SearchBar = ({ onSearch }) => {
@@ -15,14 +18,19 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for tierlists or items..."
-      />
-      <button className='btn' type="submit">Search</button>
+    <form className="search-form" onSubmit={handleSearch}>
+      <div className="search-input-container">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for tierlists or items..."
+          className="search-input"
+        />
+        <button type="submit" className="search-button">
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
     </form>
   );
 };

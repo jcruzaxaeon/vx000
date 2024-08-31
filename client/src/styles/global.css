@@ -6,7 +6,7 @@ h2 {
     text-align: left;
     color: #555;
     margin: 0;
-    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
 }
 
 br {
@@ -56,10 +56,12 @@ input:focus {
 
 .card-container {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: left;
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 30px;
+    padding-left: 7px;
 }
 
 .button-container {
@@ -143,7 +145,251 @@ input:focus {
     justify-content: flex-end;
 }
 
+
+
+/* SEARCH */
+.search-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 9px;
+  }
+  
+  .search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 18px;
+  }
+  
+  .search-button:hover {
+    color: #0056b3;
+  }
+
+/* ./client/src/styles/Login.css */
+
+.login__button:hover {
+    background-color: #333;
+}
+
+.settings-menu {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.settings-button {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    /* text-shadow: */
+        /* 0 0 1px rgba(255, 255, 255, 0.9), */
+        /* 0 0 2px rgba(255, 255, 255, 0.7), */
+        /* 0 0 3px rgba(255, 255, 255, 0.5), */
+        /* 0 0 4px rgba(51, 51, 51, 0.2), */
+        /* 0 0 5px rgba(51, 51, 51, 0.1); */
+}
+
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    padding: 5px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+.subtitle {
+    margin: auto;
+    padding: 7px 1rem;
+    text-align: left;
+}
+
+/* ICON-NAV-HEADER */
+/* ./client/src/styles/IconNavHeader.css */
+
+.icon-nav-header {
+    display: flex;
+    background-color: #333;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0px 0px 10px 10px;
+    /* padding: ??? */
+}
+
+.icon-nav-header i {
+    padding: 5px;
+}
+
+.icon-container {
+    display: flex;
+}
+
+.icon-group {
+    display: flex;
+}
+
+.icon-group a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.icon-group a:hover {
+    color: darkgray;
+}
+
+.icon-nav-header .login-button {
+    /* margin-left: auto; */
+}
+
+.icon-nav-header .login-link {
+    background-color: slategrey;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.icon-nav-header .login-link:hover {
+    background-color: #0077cc;
+}
+
+
+
+.login-button {
+    /* text-align: right; */
+}
+
+.login-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.hamburger-menu {
+    position: relative;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    padding: 5px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    /* text-shadow:
+        0 0 1px rgba(255, 255, 255, 0.9),
+        /* 0 0 2px rgba(255, 255, 255, 0.7), */
+        /* 0 0 3px rgba(255, 255, 255, 0.5), */
+        /* 0 0 4px rgba(51, 51, 51, 0.2), */
+        /* 0 0 5px rgba(51, 51, 51, 0.1);  */
+}
+
+.login-button {
+    /* text-align: right; */
+}
+
+.login-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
+    .icon-nav-header {
+        justify-content: space-between;
+    }
+
+    .icon-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: calc(100% - 100px);
+    }
+
+    .icon-group {
+        width: 100%;
+        justify-content: left;
+        /* margin-bottom: 10px; */
+    }
+
+    .icon-group a {
+        margin-right: 0;
+    }
+
+    .icon-nav-header .login-button {
+        display: flex;
+        align-items: flex-start;
+        /* margin-left: auto; */
+    }
+
     .container1 {
         padding: 1rem;
     }
@@ -153,34 +399,29 @@ input:focus {
     }
 }
 
-/* SEARCH */
-/*
 
-    searchForm: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '40px',
-    },
-    searchInput: {
-        width: '70%',
-        padding: '10px',
-        fontSize: '16px',
-        border: '1px solid #ddd',
-        borderRadius: '4px 0 0 4px',
-    },
-    searchButton: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        backgroundColor: '#007bff',
-        color: 'white',
-        border: 'none',
-        borderRadius: '0 4px 4px 0',
-        cursor: 'pointer',
-    },
-*/
+@media (max-width: 480px) {
+    .icon-nav-header {
+        justify-content: space-between;
+    }
 
-/* ./client/src/styles/Login.css */
+    .icon-container {
+        /* width: 100%; */
+        /* margin-bottom: 10px; */
+    }
 
-.login__button:hover {
-    background-color: #333;
+    .icon-group {
+        /* justify-content: center; */
+    }
+
+    .icon-nav-header .login-button {
+        /* margin-left: 0;
+      width: 100%;
+      justify-content: center; */
+    }
+
+    /* .icon-nav-header .login-link {
+      display: block;
+      text-align: center;
+    } */
 }

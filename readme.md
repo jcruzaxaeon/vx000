@@ -8,21 +8,14 @@
 - Specifically for all media? Human-powered reviews?
 - Prototype fullstack project for free-tier host-testing
 - `URL`: https://determined-tranquility-production.up.railway.app/
-- 1
-
-
-
-## Design Whiteboard
-- `tier`: S, A, B, C, D, E, F
-- `score`: as in z-score (e.g. -3, -2, -1, 0, 1, 2, 3)
-    - `decimal` (-3.9 - 3.9)
-    - 
 
 ## Action Roster
+- [ ] establish how to push new DB schema without overwriting the live DB data
+- [ ] determine a domain name for VX0
 
 ### Up Next
 
-### Action Inventory
+### Raw Action Inventory
 - [ ] display an entire tierlist
 - [ ] refactor CRUD flow
 - [ ] refactor login flow
@@ -53,12 +46,6 @@
 - [ ] build business-card format for basic-reviews
 
 ## Notice
-- Using monorepo for simplicity
-> [!!!] Double-check that `_id` and `_fk` table-comlumns in DB are `unsigned` (UN)
-
-
-
-
 
 ## Feature Wish List
 - UI/UX input for describing relationships to parents, children, siblings using arrows a la (Miro / PowerPoint)
@@ -66,8 +53,6 @@
 
 ### Grades
 - [ ] add a status column to grade table for tracking (recent, featured)
-
-
 
 ### Testing
 - `users`
@@ -78,12 +63,13 @@
     - [ ] Recover
     - [ ] Delete
 
-
-
 ## Devlog
 
-### SendGrid Justification
-- Selecting SendGrid as transactional email service provider for things like password reset because of the permanent 100 emails/day free-tier
+### 8/15/2024
+
+
+### 8/14/2024
+- [x] add password reset using SendGrid
 
 ### 8/12/2024
 - [x] Stop tracking .env.development and .env.production
@@ -103,7 +89,6 @@ $ git commit -m "Stop tracking .env.development and .env.production"
 - [ ] implement letter grade
 - [ ] complete CRUD operations for reviews
     - [ ] create (functional)
-    - [ ] 
 
 ### 7/18/2024
 - [x] Start working on card design?
@@ -164,25 +149,36 @@ $ git commit -m "Stop tracking .env.development and .env.production"
 ### ???
 - [x] add CreateReviewBasic
 
+
+
 ## AI Boilerplate
-- I'm creating a SPA using MySQL, Node.js, and React. 
+- I am using PaaS Railway to host my first SPA.  This is a learning experience for me.  I am using MySQL, Node.js, express, axios, and React.
 
 - I'm creating a SPA using MySQL, Node.js, and React.  I need to add another column to my reviews table that will hold either public, private, or shared.  Public means anyone with link can see.  Private means only creator can see.  Shared means only a subset of signed-in users, explicitly selected by the creator of the review, can see.  I'm guessing that ultimately the creator can create a list per review and maybe the creator can make a "playlist" of users (e.g. work, family, kids)  (1) What should I call this column?, (2) What datatype and attributes should it have?, (3) What additional column(s) might I need to add to manage the public, private, shared options [e.g. I have the following tables users, reviews, and nodes (officially created items to be reviewed)] (4) Might I need a new table (e.g. a linking table)? (I don't know the jargon for this in database "world".
+
+
 
 ## Notes
 
 ### Reset password Notes
 1. add `resetToken`, `resetTokenExpiry` to DB, models
-    - [ ] update MySQL
-    - [ ] update API DB model
-    - [ ] add new API route(s)
+    - [x] update MySQL
+    - [x] update API DB model
+    - [x] add new API route(s)
 1. integrate sendgrid
 1. create the reset-routes
 1. create the email utility file for `sendResetEmail()`
-1. add `ResetEmail` React-component
+1. add `ResetEmail` React-component(s)
 
 
 
+## Design Whiteboard
+- `tier`: S, A, B, C, D, E, F
+- `score`: as in z-score (e.g. -3, -2, -1, 0, 1, 2, 3)
+    - `decimal` (-3.9 - 3.9)
+- `SendGrid Justification`: Selecting SendGrid as transactional email service provider for things like password reset because of the permanent 100 emails/day free-tier
+- Using monorepo for simplicity
+> [!!!] Double-check that `_id` and `_fk` table-comlumns in DB are `unsigned` (UN)
 
 
 
