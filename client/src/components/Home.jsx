@@ -10,6 +10,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 import '../styles/normalize.css';
 import '../styles/global.css';
 import SearchBar from './SearchBar.jsx';
+import TierList from './Tierlist.jsx';
 
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -30,40 +31,40 @@ const Home = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetchPublicReviews();
+        // fetchPublicReviews();
     }, []);
 
-    const fetchPublicReviews = async () => {
-        try {
-            const response = await axios.get(`${apiUrl}/v1/api/reviews/public`, {
-                params: {
-                    limit: 3,
-                    sortBy: 'createdAt',
-                    sortOrder: 'desc'
-                }
-            });
+    // const fetchPublicReviews = async () => {
+    //     try {
+    //         const response = await axios.get(`${apiUrl}/v1/api/reviews/public`, {
+    //             params: {
+    //                 limit: 3,
+    //                 sortBy: 'createdAt',
+    //                 sortOrder: 'desc'
+    //             }
+    //         });
 
-            if (response.data && response.data.reviews) {
-                setReviews(response.data.reviews);
-            } else {
-                setReviews([]);
-            }
-        } catch (err) {
-            console.error('Error fetching public reviews:', err);
-            setError('Failed to fetch public reviews. Please try again later.');
-        }
-        // try {
-        //     const token = getToken();
-        //     const response = await axios.get(`${apiUrl}/v1/api/reviews`, {
-        //         headers: { 'Authorization': `Bearer ${token}` }
-        //     });
-        //     const recentReviews = response.data.slice(-3).reverse();
-        //     setReviews(recentReviews);
-        // } catch (err) {
-        //     console.error('Error fetching reviews:', err);
-        //     setError('Failed to fetch reviews. Please try again later.');
-        // }
-    };
+    //         if (response.data && response.data.reviews) {
+    //             setReviews(response.data.reviews);
+    //         } else {
+    //             setReviews([]);
+    //         }
+    //     } catch (err) {
+    //         console.error('Error fetching public reviews:', err);
+    //         setError('Failed to fetch public reviews. Please try again later.');
+    //     }
+    //     // try {
+    //     //     const token = getToken();
+    //     //     const response = await axios.get(`${apiUrl}/v1/api/reviews`, {
+    //     //         headers: { 'Authorization': `Bearer ${token}` }
+    //     //     });
+    //     //     const recentReviews = response.data.slice(-3).reverse();
+    //     //     setReviews(recentReviews);
+    //     // } catch (err) {
+    //     //     console.error('Error fetching reviews:', err);
+    //     //     setError('Failed to fetch reviews. Please try again later.');
+    //     // }
+    // };
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -107,7 +108,11 @@ const Home = () => {
                 <button type="submit" style={styles.searchButton}>Search</button>
             </form> */}
             <h2 className='subtitle'>Featured Tierlists</h2>
-            <div className='card-container'>
+            <TierList tierlistName="Boundary Rock" />
+
+
+            {/* LIST OF MOST RECENT REVIEWS -- MINI-DISPLAY */}
+            {/* <div className='card-container'>
                 {reviews.map((review, index) => (
                     <Card
                         key={index}
@@ -127,7 +132,7 @@ const Home = () => {
                         tierlist={review.tierlist}
                     />
                 ))}
-            </div>
+            </div> */}
 
             <nav>
                 <ul className='link-list'>

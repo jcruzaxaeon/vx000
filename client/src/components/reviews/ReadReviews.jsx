@@ -50,7 +50,7 @@ function ReadReviews() {
                         <tr key={review.review_id} style={{
                             backgroundColor: index % 2 === 0 ? '#f2f2f2' : 'white'
                         }}>
-                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.disambiguation}</td>
+                            <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.tierlist}</td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
                                 <Link to={`/reviews/${review.review_id}`}
                                     style={{
@@ -58,7 +58,7 @@ function ReadReviews() {
                                         // color: 'inherit',
                                         // display: 'contents'
                                     }}>
-                                    {review.alias}
+                                    {review.item}
                                 </Link>
                             </td>
                             <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>{review.tier}</td>

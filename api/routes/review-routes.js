@@ -12,20 +12,51 @@ const router = express.Router();
 
 // ### GET all reviews belonging to current user (paginated?) - 200 OK
 // - 
-router.get('/v1/api/reviews', authenticateUser, async (req, res) => {
-    try {
-        console.log("req.currentUser:", req.currentUser)
-        // const user_fk = req.currentUser.id;
-        // TODO: Implement pagination logic if needed
-        const reviews = await Review.findAll({
-            where: { user_fk: req.currentUser.user_id }
-            // Add pagination options here (e.g., limit, offset)
+// authenticateUser, 
+router.get('/v1/api/reviews', async (req, res, next) => {
+    // try {
+    const { tierlist } = req.query;
+    let reviews = [];
+    console.log(tierlist);
+    if (tierlist) {
+        // const [rows] = await db.query('SELECT * FROM reviews WHERE tierlist = ?', [tierlist]);
+        // reviews = rows;
+        Review.findAll({
+            where: { tierlist }
+        })
+            .then(rows => {
+                reviews = rows || [];
+                console.log("Sending public reviews: ", reviews);
+                return res.json(reviews);
+            })
+            .catch(error => {
+                console.error('Error fetching reviews:', error);
+                return res.status(500).json({ error: 'Internal server error' });
+            });
+    } else {
+        authenticateUser(req, res, async (err) => {
+            if (err) return next(err);
+            try {
+                console.log("Fetching reviews for user:", req.currentUser.user_id);
+                reviews = await Review.findAll({
+                    where: { user_fk: req.currentUser.user_id }
+                });
+                return res.json(reviews);
+            }
+            catch (err) {
+                console.error('Error fetching private reviews:', err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
         });
-        res.json(reviews);
-    } catch (err) {
-        console.error('Error fetching reviews:', err);
-        res.status(500).send('Internal Server Error');
+        // return;
     }
+    // reviews = Array.isArray(reviews) ? reviews : [];
+    // console.log("Sending reviews:", reviews);
+    // res.json(reviews);
+    // } catch (err) {
+    //     console.error('Error fetching public reviews:', err);
+    //     res.status(500).json({ error: 'Internal Server Error' });
+    // }
 });
 
 // ### GET Public Reviews - 200 OK
@@ -34,9 +65,9 @@ router.get('/v1/api/reviews/public', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
-        if(limit > 50) limit = 50;
+        if (limit > 50) limit = 50;
         const offset = (page - 1) * limit;
-        
+
         // Sorting
         const allowedSortFields = ['createdAt', 'tier', 'alias', 'disambiguation', 'score', 'User.name'];
         const sortField = allowedSortFields.includes(req.query.sortBy) ? req.query.sortBy : 'createdAt';
@@ -60,8 +91,8 @@ router.get('/v1/api/reviews/public', async (req, res) => {
         }
 
         const { count, rows } = await Review.findAndCountAll({
-            attributes: ['review_id', 'review_type', 'tierlist', 'item', 'details', 'tier', 
-        'visibility', 'alias', 'disambiguation', 'score', 'createdAt'],
+            attributes: ['review_id', 'review_type', 'tierlist', 'item', 'details', 'tier',
+                'visibility', 'alias', 'disambiguation', 'score', 'createdAt'],
             where: whereClause,
             limit: limit,
             offset: offset,
@@ -94,7 +125,7 @@ router.get('/v1/api/reviews/public', async (req, res) => {
 //         const limit = parseInt(req.query.limit) || 10;
 //         if(limit > 50) limit = 50;
 //         const offset = (page - 1) * limit;
-        
+
 //         // Sorting
 //         const sortField = req.query.sortBy || 'createdAt';
 //         const sortOrder = req.query.sortOrder === 'asc' ? 'ASC' : 'DESC';
@@ -162,9 +193,9 @@ router.get('/v1/api/reviews/:id', async (req, res) => {
 // - Update endpoint to `/v1/api/reviews`
 router.post('/v1/api/reviews', async (req, res) => {
     const { review_type, tierlist, item, details,
-        alias, disambiguation, visibility, 
+        alias, disambiguation, visibility,
         tier, category, type, score, categories, tags, brief, comment, user_fk, node_fk, rubric_fk } = req.body;
-        console.log("Request Body:", req.body);
+    console.log("Request Body:", req.body);
 
     try {
         const newReview = await Review.create({

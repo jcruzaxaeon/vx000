@@ -10,7 +10,8 @@
 - `URL`: https://determined-tranquility-production.up.railway.app/
 
 ## Action Roster
-- [ ] establish how to push new DB schema without overwriting the live DB data
+- [x] establish how to push new DB schema without overwriting the live DB data
+    - Requires MySQL Worbench connection to remote DB > Right-click on `tablename` > `Table Data Export Wizard`
 - [ ] determine a domain name for VX0
 
 ### Up Next
@@ -44,6 +45,7 @@
 
 #### Long Term
 - [ ] build business-card format for basic-reviews
+- [ ] add tierlist categorization for browsing
 
 ## Notice
 
@@ -65,8 +67,8 @@
 
 ## Devlog
 
-### 8/15/2024
-
+### 10/7/2024
+- [x] create scrolling-text in Tierlist
 
 ### 8/14/2024
 - [x] add password reset using SendGrid
@@ -152,7 +154,102 @@ $ git commit -m "Stop tracking .env.development and .env.production"
 
 
 ## AI Boilerplate
-- I am using PaaS Railway to host my first SPA.  This is a learning experience for me.  I am using MySQL, Node.js, express, axios, and React.
+
+```
+I am using PaaS Railway to host my first SPA.  This is a learning experience for me.  I am using MySQL, Sequelize, Node.js, express, axios, and React.
+
+I need to create a scrolling-text/ticker-tape component "ScrollingText" that acts like an LED stock-ticker that wraps around a building.  It should pause for about 5 seconds at the beginning, scroll text to the left, show a small gap followed by the beginning of the text again, and once the beginning of the text reaches its initial starting point, start the cycle all over with another 5 second pause.  I will be displaying a dynamic number of these components on the page differentiated by an integer-prop called `index`.  I want #0 to start scrolling 5 seconds after loading, #1 to start 10 seconds after loading, #2 @ 15sec, #3 @ 20sec, ... Essentially starting the process for each component with an offset in time of about 5 seconds.
+```
+
+Calling Component
+```javascript
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ScrollingText from './ScrollingText';
+import '../styles/normalize.css';
+import '../styles/global.css';
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const TierList = ({ tierlistName }) => {
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    //   const tiers = ['S', 'A', 'B', 'C', 'D', 'E', 'F'];
+    const tiers = ['S', 'A', 'B', 'C'];
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`${apiUrl}/v1/api/reviews?tierlist=${tierlistName}`);
+                setReviews(Array.isArray(response.data) ? response.data : []);
+                setError(null);
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+                setError('Failed to fetch reviews. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchReviews();
+    }, [tierlistName]);
+
+    const getTierReviews = (tier) => {
+        return reviews.filter(review => review.tier === tier);
+    };
+
+    const renderTierItems = (tier) => {
+        const tierReviews = getTierReviews(tier);
+        console.log("Tier Reviews:", reviews);
+        return tierReviews.slice(0, 5).map( (review, i) => (
+            <div key={review.review_id} className="tier-item">
+                <ScrollingText
+                    className="item-name"
+                    text={`${review.item} - ${review.details}`}
+                    initialPauseSeconds={4}
+                    scrollSpeed={0.5}
+                    index={i}
+                    timeOffset={5}
+                />
+                {/* {review.brief && <span className="item-brief"> - {review.brief}</span>} */}
+            </div>
+        ));
+    };
+
+    if (loading) return <div className="loading">Loading...</div>;
+    if (error) return <div className="error">{error}</div>;
+
+    return (
+        <div className="tierlist">
+            <span className="tierlist-title">{tierlistName} </span>
+            <span className='tierlist-subtitle'>by Joel Cruz</span>
+            <div className="tierlist-grid">
+                {tiers.map(tier => (
+                    <React.Fragment key={tier}>
+                        <div className={`tier-letter tier-${tier.toLowerCase()}`}>{tier}</div>
+                        <div className={`tier-items--${tier.toLowerCase()}`}>
+                            {renderTierItems(tier)}
+                            {getTierReviews(tier).length > 5 && (
+                                <div className="more-items">
+                                    +{getTierReviews(tier).length - 5} more items
+                                </div>
+                            )}
+                        </div>
+                    </React.Fragment>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default TierList;
+```
+
+First Attempt
+```
+
+```
 
 - I'm creating a SPA using MySQL, Node.js, and React.  I need to add another column to my reviews table that will hold either public, private, or shared.  Public means anyone with link can see.  Private means only creator can see.  Shared means only a subset of signed-in users, explicitly selected by the creator of the review, can see.  I'm guessing that ultimately the creator can create a list per review and maybe the creator can make a "playlist" of users (e.g. work, family, kids)  (1) What should I call this column?, (2) What datatype and attributes should it have?, (3) What additional column(s) might I need to add to manage the public, private, shared options [e.g. I have the following tables users, reviews, and nodes (officially created items to be reviewed)] (4) Might I need a new table (e.g. a linking table)? (I don't know the jargon for this in database "world".
 
@@ -180,5 +277,22 @@ $ git commit -m "Stop tracking .env.development and .env.production"
 - Using monorepo for simplicity
 > [!!!] Double-check that `_id` and `_fk` table-comlumns in DB are `unsigned` (UN)
 
+
+
+## Database Backup
+
+### TL;DR
+- Open `MySQL Workbench`
+- Open/create connection to database on `Railway`
+- Open target database
+- Right-click on a `tablename` > `Table Data Export Wizard` > Follow instructions
+- (OPTIONAL ATTEMPT) Enter the following `SQL` into `Query`-tab
+    ```sql
+    SELECT * FROM tablename
+    INTO OUTFILE 'local\path\tablename-20240814.csv'
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"'
+    LINES TERMINATED BY '\n';
+    ```
 
 
